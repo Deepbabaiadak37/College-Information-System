@@ -20,70 +20,14 @@ function Contact()
               <div className="row no-gutters">
                 <div className="col-md-6">
                   <div className="contact-wrap w-100 p-lg-5 p-4">
-                    <h2 className="mb-4" style={{ color:'white'}}>Send us a message</h2>
-                    <form
-                      id="contactForm"
-                      className="contactForm"
-                      >
+                    
 
-                      <div className="row">
-                        <div className="col-md-12">
-                          <div className="form-group">
-                            <input
-                              type="text"
-                              className="form-control"
-                              name="name"
-                              placeholder="Name"
-                              
-                            />
-                          </div>
-                        </div>
-                        <div className="col-md-12">
-                          <div className="form-group">
-                            <input
-                              type="email"
-                              className="form-control"
-                              name="email"
-                              placeholder="Email"
-                              
-                            />
-                          </div>
-                        </div>
-                        <div className="col-md-12">
-                          <div className="form-group">
-                            <input
-                              type="text"
-                              className="form-control"
-                              name="subject"
-                              placeholder="Subject"
-                              
-                            />
-                          </div>
-                        </div>
-                        <div className="col-md-12">
-                          <div className="form-group">
-                            <textarea
-                              type="text"
-                              className="form-control"
-                              name="message"
-                              placeholder="Message"
-                              cols="30"
-                              rows="6"
-                             
-                            ></textarea>
-                          </div>
-                        </div>
-                        <div className="col-md-12">
-                          <div className="form-group">
-                            <input
-                              type="submit"
-                              value="Send Message"
-                              className="btn btn-primary"
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    </form>
+
+                  <iframe style={{ borderRadius:'19px'}} width="649" height="539" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" id="gmap_canvas" src="https://maps.google.com/maps?width=649&amp;height=539&amp;hl=en&amp;q=college%20of%20engineering%20&amp;%20management,kolaghat%20kolaghat+(Map%20View)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe> 
+                  
+                  <script type='text/javascript' src='https://embedmaps.com/google-maps-authorization/script.js?id=5bb058ed9a2ec143ea9e8812bb3386f97aa437b8'></script>
+
+
                   </div>
                 </div>
                 <div className="col-md-6 d-flex align-items-stretch">

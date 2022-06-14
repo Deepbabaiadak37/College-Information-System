@@ -25,7 +25,7 @@ export default function ForgotPassword()
     const submitform=(event)=>{
         event.preventDefault();
 
-        
+
 
      /*  
         toast('error screen!!', {
@@ -390,7 +390,7 @@ export default function ForgotPassword()
                             <input className='form-control' type="password" placeholder='Enter New Password' maxLength="6" onChange={(e)=>setNewpass(e.target.value)} value={newpass} style={{ visibility :visibility5}}/>               
                             <input className='form-control' type="password" placeholder='Confirm Password' maxLength="6" onChange={(e)=>setNewconfpass(e.target.value)} value={newconfpass} style={{ visibility :visibility6}}/>
                           
-                            <button id="resend-id" type="button" onClick={submitform} style={{ border:'none',padding:'10px',visibility: visibility1,backgroundColor: 'deeppink',color:'white' }}>Resend otp</button>
+                            <button id="resend-id" className='btn btn-warning' type="button" onClick={submitform} style={{ border:'none',padding:'10px',visibility: visibility1,backgroundColor: 'deeppink',color:'white' }}>Resend otp</button>
                             <button id="send-id" className='btn btn-success' onClick={submitform} style={{ visibility: visibility2 }}> Send otp</button>
                             <button className='btn btn-success' onClick={submitotp} style={{ visibility: visibility3 }}> submit</button>
 

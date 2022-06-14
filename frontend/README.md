@@ -16,3 +16,4 @@ USER:       Reshma Mandana
 EMAIL:      cse1810@cemk.ac.in
 PASSWORD:   reshma123
 
+regex-email:      /[a-t]+[0-9]+@[c-m]+\.[a-c]+\.[i-n]{2,3}/gm
