@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Header from '../Header';
 import Footer from '../footer';
 import axios from 'axios';
+import './index.css';
 
 import toast, { Toaster } from 'react-hot-toast';
 
@@ -23,6 +24,8 @@ export default function ForgotPassword()
 
     const submitform=(event)=>{
         event.preventDefault();
+
+        
 
      /*  
         toast('error screen!!', {
@@ -368,31 +371,46 @@ export default function ForgotPassword()
         <>
         <Header/>
        
-        <div className='container' style={{ height:'50vh',background:'linear-gradient(to right,#0f0c29, #302b63, #24243e)'}}>
+        <div className='container custom-contain' style={{  height:'600px',background:'linear-gradient(to right,#0f0c29, #302b63, #24243e)'}}>
             <div className='row '>
-                <div className=' d-flex justify-content--center'>
-                    <form className='form-group'>
-                        <input class="form-control" type="email" placeholder='Enter Your Email ' style={{ visibility :visibility0}} onChange={(e)=>setEmail(e.target.value)}/>
-                        <input className='form-control' type="text" placeholder='Enter OTP' maxLength="6" onChange={(e)=>setOtp(e.target.value)} style={{ visibility :visibility4}}/>
+                    
+                <div className=' d-flex justify-content--center' style={{ borderRadius:'10px',width:'fit-content' , background: 'linear-gradient(to right, #8e2de2, #4a00e0)',color:'white',marginLeft:'50%',transform:'translate(-50%)',marginTop:'50px'}}>
+                    <div className='row align-items-center'>
+                      <div className='col-md-6 col-lg-6'>
+                          <h3 style={{ padding:'10px',marginLeft:'50%',color:'white',transform:'translate(-50%)'}}>Change Password</h3>
+                          <img style={{ padding:'10px',marginLeft:'50%',transform:'translate(-50%)',color:'white'}} src='https://cdn-icons.flaticon.com/png/128/2665/premium/2665311.png?token=exp=1655225538~hmac=5fea358b97576254a4c2d6b1ec2391ab'/>
+                          <br></br>
+                      </div>
 
-                        <input className='form-control' type="password" placeholder='Enter New Password' maxLength="6" onChange={(e)=>setNewpass(e.target.value)} value={newpass} style={{ visibility :visibility5}}/>               
-                        <input className='form-control' type="password" placeholder='Confirm Password' maxLength="6" onChange={(e)=>setNewconfpass(e.target.value)} value={newconfpass} style={{ visibility :visibility6}}/>
-                       
-                        <button id="resend-id" type="button" onClick={submitform} style={{ border:'none',padding:'10px',visibility: visibility1,backgroundColor: 'deeppink',color:'white' }}>Resend otp</button>
-                        <button id="send-id" className='btn btn-success' onClick={submitform} style={{ visibility: visibility2 }}> Send otp</button>
-                        <button className='btn btn-success' onClick={submitotp} style={{ visibility: visibility3 }}> submit</button>
+                      <div className='col-md-6 col-lg-6'>
+                        <form className='form-group' style={{ padding:'30px'}}>
+                            <input class="form-control" type="email" placeholder='Enter Your Email ' style={{ visibility :visibility0}} onChange={(e)=>setEmail(e.target.value)}/>
+                            <input className='form-control' type="text" placeholder='Enter OTP' maxLength="6" onChange={(e)=>setOtp(e.target.value)} style={{ visibility :visibility4}}/>
 
-                        <button className='btn btn-info' onClick={changepasswd} style={{ visibility: visibility7 }}> Change Password</button>
-                    </form>
+                            <input className='form-control' type="password" placeholder='Enter New Password' maxLength="6" onChange={(e)=>setNewpass(e.target.value)} value={newpass} style={{ visibility :visibility5}}/>               
+                            <input className='form-control' type="password" placeholder='Confirm Password' maxLength="6" onChange={(e)=>setNewconfpass(e.target.value)} value={newconfpass} style={{ visibility :visibility6}}/>
+                          
+                            <button id="resend-id" type="button" onClick={submitform} style={{ border:'none',padding:'10px',visibility: visibility1,backgroundColor: 'deeppink',color:'white' }}>Resend otp</button>
+                            <button id="send-id" className='btn btn-success' onClick={submitform} style={{ visibility: visibility2 }}> Send otp</button>
+                            <button className='btn btn-success' onClick={submitotp} style={{ visibility: visibility3 }}> submit</button>
+
+                            <button className='btn btn-info' onClick={changepasswd} style={{ visibility: visibility7 }}> Change Password</button>
+                        </form>
+                      </div>
+                    </div>
+                    
+
+
+                   
+                    
                 </div>
                 
-            </div>
-            <Toaster
-                position="top-right"
-                reverseOrder={false}
-                />
+          </div>
+            <Toaster  position="top-right" reverseOrder={false}  />
+   
         </div>
-        <Footer/>
+        
+        <Footer className="mt-4"/>
         </>
 
     );
