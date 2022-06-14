@@ -21,42 +21,49 @@ return (
           <hr className="clearfix w-100 d-md-none" />
           <MDBCol md="2">
             <h5 style={{color:'white'}} className="text-uppercase mb-4 mt-3 font-weight-bold">
-              Links
+              Quick Links
             </h5>
             <ul className="list-unstyled">
-              <li>
-                <a href="#!">Link 1</a>
+              <li style={{ padding:'10px'}}>
+                <a href="#!">Contact us</a>
               </li>
-              <li>
-                <a href="#!">Link 4</a>
+              <li style={{ padding:'10px'}}>
+                <a href="#!">Anti Ragging rules</a>
               </li>
             </ul>
           </MDBCol>
           <hr className="clearfix w-100 d-md-none" />
           <MDBCol md="2">
             <h5 style={{color:'white'}} className="text-uppercase mb-4 mt-3 font-weight-bold">
-              Links
+              College Address
             </h5>
             <ul className="list-unstyled">
               <li>
-                <a href="#!">Link 1</a>
+                <div>College of Engineering & Management, Kolaghat</div>
               </li>
               <li>
-                <a href="#!">Link 4</a>
+                <div >P.O. KTPP Township, Purba Medinipur</div>
+                <p>Phone: (03228) 2500600, 2494443</p>
               </li>
             </ul>
           </MDBCol>
           <hr className="clearfix w-100 d-md-none" />
           <MDBCol md="2">
             <h5 style={{color:'white'}} className="text-uppercase mb-4 mt-3 font-weight-bold">
-              Links
+              Connect With Us
             </h5>
             <ul className="list-unstyled">
-              <li>
-                <a href="/">route 1</a>
+              <li style={{ padding:'10px'}}>
+                <a href="https://www.youtube.com/c/OfficialCEMK">Youtube</a>
               </li>
-              <li>
-                <a href="#!">Link 4</a>
+              <li style={{ padding:'10px'}}>
+                <a href="https://www.instagram.com/accounts/login/?next=/cemkfest_2k22/">Instagram</a>
+              </li>
+              <li style={{ padding:'10px'}}>
+                <a href="https://www.linkedin.com/school/official-cemk/">Linkedin</a>
+              </li>
+              <li style={{ padding:'10px'}}>
+                <a href="https://www.facebook.com/OfficialCEMK">Facebook</a>
               </li>
             </ul>
           </MDBCol>

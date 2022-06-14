@@ -78,8 +78,8 @@ function DashboardMainAdmin ()
         setBreadcrumb("Faculty View");
       else if(event.key==='3')
         setBreadcrumb("Teacher Manage");
-      else if(event.key==='4')
-        setBreadcrumb("Attendance---generate routine");
+     // else if(event.key==='4')
+      //  setBreadcrumb("Attendance---generate routine");
       else if(event.key==='5')
         setBreadcrumb("Add Course");
       else if(event.key==='6')
@@ -108,8 +108,8 @@ function DashboardMainAdmin ()
           return (<FacultyView/>);
         case '3':
           return (<AdminTeacherManage/>);
-        case '4':
-          return (<></>);
+       // case '4':
+        //  return (<></>);
         case '5':
           return (<AddCourse/>);
         case '6':
@@ -153,10 +153,10 @@ function DashboardMainAdmin ()
                           Add Faculty Details
                         </Menu.Item>
                         
-                        <Menu.Item key="4" icon={ <AppstoreOutlined  style={{ fontSize: '19px', color: '#fff' }}/> } >
+                   {/*     <Menu.Item key="4" icon={ <AppstoreOutlined  style={{ fontSize: '19px', color: '#fff' }}/> } >
                           Attendance Info
                         </Menu.Item>
-
+                */}
                         <Menu.Item key="5" icon={<ReconciliationOutlined style={{ fontSize: '19px', color: '#fff' }} /> } >
                           Add Course
                         </Menu.Item>

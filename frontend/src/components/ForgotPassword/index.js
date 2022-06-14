@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import Header from '../Header';
 import Footer from '../footer';
 import axios from 'axios';
-import { GiIgloo } from 'react-icons/gi';
 
+import toast, { Toaster } from 'react-hot-toast';
 
 export default function ForgotPassword()
 {
@@ -17,11 +17,66 @@ export default function ForgotPassword()
     const [visibility5,setVisibility5]=useState('hidden')
     const [visibility6,setVisibility6]=useState('hidden')
     const [visibility7,setVisibility7]=useState('hidden')
+    const [newpass,setNewpass]=useState("")
+    const [newconfpass,setNewconfpass]=useState("")
 
 
     const submitform=(event)=>{
         event.preventDefault();
-        
+
+     /*  
+        toast('error screen!!', {
+            duration: 2000,
+            position: 'top-center',
+            // Styling
+            style: {
+                padding: '20px',
+                fontWeight: '700',
+                width:'100%',
+                backgroundColor:' #f80759',
+                color:'white'
+            },
+            className: '',
+            // Custom Icon
+            icon: '⚠',
+            // Change colors of success/error/loading icon
+            iconTheme: {
+              primary: '#000'
+            },
+            // Aria
+            ariaProps: {
+              role: 'status',
+              'aria-live': 'polite',
+            },
+          });
+
+         
+          toast('tick screen !!', {
+            duration: 2000,
+            position: 'top-center',
+            // Styling
+            style: {
+                padding: '20px',
+                fontWeight: '700',
+                width:'100%',
+                backgroundColor:'#00c851',
+                color:'white'
+            },
+            className: '',
+            // Custom Icon
+            icon: '✅',
+            // Change colors of success/error/loading icon
+            iconTheme: {
+              primary: '#000'
+            },
+            // Aria
+            ariaProps: {
+              role: 'status',
+              'aria-live': 'polite',
+            },
+          });
+
+        */
         var config = {
             method: 'post',
             url: 'http://localhost:3001/userroutes/forgotpssword/',
@@ -38,6 +93,30 @@ export default function ForgotPassword()
             {
                 if(res.data.status==200)
                 {
+                    toast('OTP sent to your mail. Check !!', {
+                        duration: 2500,
+                        position: 'top-center',
+                        // Styling
+                        style: {
+                            padding: '20px',
+                            fontWeight: '700',
+                            width:'100%',
+                            backgroundColor:'#00c851',
+                            color:'white'
+                        },
+                        className: '',
+                        // Custom Icon
+                        icon: '✅',
+                        // Change colors of success/error/loading icon
+                        iconTheme: {
+                          primary: '#000'
+                        },
+                        // Aria
+                        ariaProps: {
+                          role: 'status',
+                          'aria-live': 'polite',
+                        },
+                      });
                    setVisibility1('visible')
                    setVisibility2('hidden')
                    setVisibility3('visible')
@@ -46,7 +125,30 @@ export default function ForgotPassword()
                 }
                 else if(res.data.status==400)
                 {
-                    alert(res.data.msg)
+                    toast(res.data.msg, {
+                        duration: 2500,
+                        position: 'top-center',
+                        // Styling
+                        style: {
+                            padding: '20px',
+                            fontWeight: '700',
+                            width:'100%',
+                            backgroundColor:' #f80759',
+                            color:'white'
+                        },
+                        className: '',
+                        // Custom Icon
+                        icon: '⚠',
+                        // Change colors of success/error/loading icon
+                        iconTheme: {
+                          primary: '#000'
+                        },
+                        // Aria
+                        ariaProps: {
+                          role: 'status',
+                          'aria-live': 'polite',
+                        },
+                      });
                 }
                 else
                 {
@@ -57,24 +159,206 @@ export default function ForgotPassword()
             {
                 console.log(error);
              });
+
+             
     }
 
     const submitotp=(event)=>{
         event.preventDefault();
-        console.log(otp)
-        setVisibility7('visible')
-        setVisibility6('visible')
-        setVisibility5('visible')
+        if(!otp)
+        {
+            toast('Enter OTP  !!', {
+                duration: 2000,
+                position: 'top-center',
+                // Styling
+                style: {
+                    padding: '20px',
+                    fontWeight: '700',
+                    width:'100%',
+                    backgroundColor:' #f80759',
+                    color:'white'
+                },
+                className: '',
+                // Custom Icon
+                icon: '⚠',
+                // Change colors of success/error/loading icon
+                iconTheme: {
+                  primary: '#000'
+                },
+                // Aria
+                ariaProps: {
+                  role: 'status',
+                  'aria-live': 'polite',
+                },
+              });
+        }
+        else
+        {
+            if(otp.length<6 || otp.length>6)
+            {
+                toast('Enter 6 digit Otp !!', {
+                    duration: 2000,
+                    position: 'top-center',
+                    // Styling
+                    style: {
+                        padding: '20px',
+                        fontWeight: '700',
+                        width:'100%',
+                        backgroundColor:' #f80759',
+                        color:'white'
+                    },
+                    className: '',
+                    // Custom Icon
+                    icon: '⚠',
+                    // Change colors of success/error/loading icon
+                    iconTheme: {
+                    primary: '#000'
+                    },
+                    // Aria
+                    ariaProps: {
+                    role: 'status',
+                    'aria-live': 'polite',
+                    },
+                });
+            }
+            else
+            {
+                //check from database with otp value 
+                setVisibility7('visible')
+                setVisibility6('visible')
+                setVisibility5('visible')
 
-        setVisibility1('hidden')
-        setVisibility2('hidden')
-        setVisibility3('hidden')
-        setVisibility0('hidden')
-        setVisibility4('hidden')
-
+                setVisibility1('hidden')
+                setVisibility2('hidden')
+                setVisibility3('hidden')
+                setVisibility0('hidden')
+                setVisibility4('hidden')
+            }
+        }
+        
     }
 
-    const changepasswd=()=>{
+    const changepasswd=(event)=>{
+        event.preventDefault();
+
+
+        if(!newpass || !newconfpass)
+        {
+            toast('Enter All the Fields!!', {
+                duration: 2000,
+                position: 'top-center',
+                // Styling
+                style: {
+                    padding: '20px',
+                    fontWeight: '700',
+                    width:'100%',
+                    backgroundColor:' #f80759',
+                    color:'white'
+                },
+                className: '',
+                // Custom Icon
+                icon: '⚠',
+                // Change colors of success/error/loading icon
+                iconTheme: {
+                  primary: '#000'
+                },
+                // Aria
+                ariaProps: {
+                  role: 'status',
+                  'aria-live': 'polite',
+                },
+              });
+        }
+        else
+        {
+            if(newpass.length<=5)
+            {
+                toast('Passwords length should be greater than 5!!', {
+                    duration: 2000,
+                    position: 'top-center',
+                    // Styling
+                    style: {
+                        padding: '20px',
+                        fontWeight: '700',
+                        width:'110%',
+                        backgroundColor:' #f80759',
+                        color:'white'
+                    },
+                    className: '',
+                    // Custom Icon
+                    icon: '⚠',
+                    // Change colors of success/error/loading icon
+                    iconTheme: {
+                      primary: '#000'
+                    },
+                    // Aria
+                    ariaProps: {
+                      role: 'status',
+                      'aria-live': 'polite',
+                    },
+                  });
+            }
+            else
+            {
+                if(newpass!=newconfpass)
+                {
+                    toast('Passwords are not matching!!', {
+                        duration: 2000,
+                        position: 'top-center',
+                        // Styling
+                        style: {
+                            padding: '20px',
+                            fontWeight: '700',
+                            width:'100%',
+                            backgroundColor:' #f80759',
+                            color:'white'
+                        },
+                        className: '',
+                        // Custom Icon
+                        icon: '⚠',
+                        // Change colors of success/error/loading icon
+                        iconTheme: {
+                          primary: '#000'
+                        },
+                        // Aria
+                        ariaProps: {
+                          role: 'status',
+                          'aria-live': 'polite',
+                        },
+                      });
+                }
+                else
+                {
+                    //call api and change password
+    
+                    toast('Your Password is Changed  !!', {
+                        duration: 2000,
+                        position: 'top-center',
+                        // Styling
+                        style: {
+                            padding: '20px',
+                            fontWeight: '700',
+                            width:'100%',
+                            backgroundColor:'#00c851',
+                            color:'white'
+                        },
+                        className: '',
+                        // Custom Icon
+                        icon: '✅',
+                        // Change colors of success/error/loading icon
+                        iconTheme: {
+                          primary: '#000'
+                        },
+                        // Aria
+                        ariaProps: {
+                          role: 'status',
+                          'aria-live': 'polite',
+                        },
+                      });
+                }
+            }
+           
+        }
 
     }
 
@@ -83,7 +367,7 @@ export default function ForgotPassword()
     return (
         <>
         <Header/>
-
+       
         <div className='container' style={{ height:'50vh',background:'linear-gradient(to right,#0f0c29, #302b63, #24243e)'}}>
             <div className='row '>
                 <div className=' d-flex justify-content--center'>
@@ -91,8 +375,8 @@ export default function ForgotPassword()
                         <input class="form-control" type="email" placeholder='Enter Your Email ' style={{ visibility :visibility0}} onChange={(e)=>setEmail(e.target.value)}/>
                         <input className='form-control' type="text" placeholder='Enter OTP' maxLength="6" onChange={(e)=>setOtp(e.target.value)} style={{ visibility :visibility4}}/>
 
-                        <input className='form-control' type="text" placeholder='Enter New Password' maxLength="6"  style={{ visibility :visibility5}}/>               
-                        <input className='form-control' type="text" placeholder='Confirm Password' maxLength="6"  style={{ visibility :visibility6}}/>
+                        <input className='form-control' type="password" placeholder='Enter New Password' maxLength="6" onChange={(e)=>setNewpass(e.target.value)} value={newpass} style={{ visibility :visibility5}}/>               
+                        <input className='form-control' type="password" placeholder='Confirm Password' maxLength="6" onChange={(e)=>setNewconfpass(e.target.value)} value={newconfpass} style={{ visibility :visibility6}}/>
                        
                         <button id="resend-id" type="button" onClick={submitform} style={{ border:'none',padding:'10px',visibility: visibility1,backgroundColor: 'deeppink',color:'white' }}>Resend otp</button>
                         <button id="send-id" className='btn btn-success' onClick={submitform} style={{ visibility: visibility2 }}> Send otp</button>
@@ -103,6 +387,10 @@ export default function ForgotPassword()
                 </div>
                 
             </div>
+            <Toaster
+                position="top-right"
+                reverseOrder={false}
+                />
         </div>
         <Footer/>
         </>
