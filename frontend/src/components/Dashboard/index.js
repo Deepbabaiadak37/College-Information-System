@@ -17,8 +17,7 @@ import {
          UploadOutlined,AppstoreOutlined ,InfoCircleOutlined
 
        } from '@ant-design/icons';
-
-
+import HostelnoticeView from '../HostelnoticeView';
 const { Header, Sider, Content, Footer } = Layout;
 
 
@@ -68,6 +67,8 @@ function Dashboard ()
         setBreadcrumb("Hostel Allotment");
       else if(event.key==='7')
         setBreadcrumb("Faculty Details");
+      else if(event.key==='8')
+        setBreadcrumb("Hostel Notices");
       else
         setBreadcrumb("");
     }
@@ -95,6 +96,8 @@ function Dashboard ()
           return (<AllotmentsView/>);
         case '7':
           return (<FacultyView/>)
+        case '8':
+          return (<HostelnoticeView/>);
         default:
           break;
       }
@@ -144,11 +147,11 @@ function Dashboard ()
                             Faculty Details
                           </Menu.Item>
                           
-                        {/*  <Menu.Item key="8"  icon={ <InfoCircleOutlined style={{ fontSize: '19px', color: '#fff' }}/>} >
-                            Campus Info
+                          <Menu.Item key="8"  icon={ <InfoCircleOutlined style={{ fontSize: '19px', color: '#fff' }}/>} >
+                            Hostel Notice
                           </Menu.Item>
 
-    */}
+    
                           <Menu.Item key="9"  icon={ <LogoutOutlined style={{ fontSize: '22px', color: '#f80759' }} /> }>
 
                             <a style={{

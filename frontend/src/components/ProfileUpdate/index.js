@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import {Image} from 'antd';
-import pic from '../images/bar_profile.jpg';
 import jwtDecode from 'jwt-decode';
 import axios from 'axios';
 
@@ -14,7 +13,7 @@ const ProfileUpdate = () =>
 
 
   useEffect(()=>{
-    console.log(jwtDecode(localStorage.getItem('token'))._id)
+    //console.log(jwtDecode(localStorage.getItem('token'))._id)
     var config = {
       method: 'post',
       url: 'http://localhost:3001/userroutes/login/getuserimage',

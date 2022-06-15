@@ -12,9 +12,9 @@ function Contact()
       <hr className="text-center" style={{ width:'50%'}}/>
     </center>
     
-      <div className="container">
+      <div className="container" style={{ color:'white'}}>
        
-        <div style={{ background:'linear-gradient(to right, #b993d6, #8ca6db)'}} className="row justify-content-center">
+        <div style={{ background:'linear-gradient(to right,#bc4e9c, #f80759)'}} className="row justify-content-center">
           <div className="col-md-10">
             <div className="wrapper">
               <div className="row no-gutters">
@@ -33,7 +33,7 @@ function Contact()
                 <div className="col-md-6 d-flex align-items-stretch">
                   <div className="info-wrap w-100 p-lg-5 p-4 img">
                    
-                    <p className="mb-4">
+                    <p className="mb-4" style={{ color:'#FFEFBA'}}>
                       We're open for any suggestion or just to have a chat
                     </p>
 
@@ -81,7 +81,7 @@ function Contact()
                       <div className="text pl-3">
                         <p>
                           <span>Phone:</span>&nbsp;&nbsp;
-                          <a href="tel://+91 98303 19129" style={{ color:'white'}}>+91 98303 19129</a>
+                          <a href="tel://+91 98303 19129"style={{ color:'#FFEFBA'}}>+91 98303 19129</a>
                         </p>
                       </div>
                     </div>
@@ -94,7 +94,7 @@ function Contact()
                       <div className="text pl-3">
                         <p>
                           <span>Email 1:</span>
-                          <a href="mailto:..." style={{ color:'#FFEFBA'}}>&nbsp;&nbsp;
+                          <a href="mailto:..." style={{ color:'#fff'}}>&nbsp;&nbsp;
                             webmaster@cemk.ac.in 
 
                           </a>
