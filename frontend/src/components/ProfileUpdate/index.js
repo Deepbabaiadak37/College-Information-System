@@ -61,9 +61,12 @@ const submitForm=(event)=>{
       <div class="container">
         <div class="row">
             <div class="col">
+              <h3>Profile Picture</h3>
               <Image
                 width={400}
+                height={380}
                 src={picurl}
+                style={{ borderRadius:'10px'}}
               />
 
               <form>
