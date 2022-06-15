@@ -87,7 +87,7 @@ router.post('/getusers',async(req,res)=>{
     }
     var chkmember = await member.find({ year,dept });
     
-    res.json(chkmember);
+   return res.status(200).json(chkmember);
 })
 
 

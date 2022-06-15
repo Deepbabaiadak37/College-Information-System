@@ -4,7 +4,7 @@ import Footer from '../footer/index';
 import '../Signup/Signup.css';
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';
-
+import toast, { Toaster } from 'react-hot-toast';
 
 function Admin()
 {

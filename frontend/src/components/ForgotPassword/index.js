@@ -5,6 +5,7 @@ import axios from 'axios';
 import './index.css';
 
 import toast, { Toaster } from 'react-hot-toast';
+import { GiConsoleController } from 'react-icons/gi';
 
 export default function ForgotPassword()
 {
@@ -227,15 +228,100 @@ export default function ForgotPassword()
             else
             {
                 //check from database with otp value 
-                setVisibility7('visible')
-                setVisibility6('visible')
-                setVisibility5('visible')
 
-                setVisibility1('hidden')
-                setVisibility2('hidden')
-                setVisibility3('hidden')
-                setVisibility0('hidden')
-                setVisibility4('hidden')
+                var config = {
+                  method: 'post',
+                  url: 'http://localhost:3001/userroutes/forgotpssword/matchotp',
+                  headers: { 
+                  'Content-Type': 'application/json'
+                  },
+                  data:
+                  {
+                      'email':email,
+                      'otp':otp
+                  }
+              };
+          
+              axios(config).then(function (res) 
+                  {
+                      if(res.data.status==200)
+                      {
+                          toast(res.data.msg, {
+                              duration: 2500,
+                              position: 'top-center',
+                              // Styling
+                              style: {
+                                  padding: '20px',
+                                  fontWeight: '700',
+                                  width:'100%',
+                                  backgroundColor:'#00c851',
+                                  color:'white'
+                              },
+                              className: '',
+                              // Custom Icon
+                              icon: '✅',
+                              // Change colors of success/error/loading icon
+                              iconTheme: {
+                                primary: '#000'
+                              },
+                              // Aria
+                              ariaProps: {
+                                role: 'status',
+                                'aria-live': 'polite',
+                              },
+                            });
+
+
+
+                            setVisibility7('visible')
+                            setVisibility6('visible')
+                            setVisibility5('visible')
+            
+                            setVisibility1('hidden')
+                            setVisibility2('hidden')
+                            setVisibility3('hidden')
+                            setVisibility0('hidden')
+                            setVisibility4('hidden')
+
+                      }
+                      else if(res.data.status==422)
+                      {
+                          toast(res.data.msg, {
+                              duration: 2500,
+                              position: 'top-center',
+                              // Styling
+                              style: {
+                                  padding: '20px',
+                                  fontWeight: '700',
+                                  width:'100%',
+                                  backgroundColor:' #f80759',
+                                  color:'white'
+                              },
+                              className: '',
+                              // Custom Icon
+                              icon: '⚠',
+                              // Change colors of success/error/loading icon
+                              iconTheme: {
+                                primary: '#000'
+                              },
+                              // Aria
+                              ariaProps: {
+                                role: 'status',
+                                'aria-live': 'polite',
+                              },
+                            });
+                      }
+                      else
+                      {
+                          console.log(res)
+                      }
+                  })
+                  .catch(function (error) 
+                  {
+                      console.log(error);
+                   });
+      
+                
             }
         }
         
@@ -333,31 +419,86 @@ export default function ForgotPassword()
                 else
                 {
                     //call api and change password
-    
-                    toast('Your Password is Changed  !!', {
-                        duration: 2000,
-                        position: 'top-center',
-                        // Styling
-                        style: {
-                            padding: '20px',
-                            fontWeight: '700',
-                            width:'100%',
-                            backgroundColor:'#00c851',
-                            color:'white'
-                        },
-                        className: '',
-                        // Custom Icon
-                        icon: '✅',
-                        // Change colors of success/error/loading icon
-                        iconTheme: {
-                          primary: '#000'
-                        },
-                        // Aria
-                        ariaProps: {
-                          role: 'status',
-                          'aria-live': 'polite',
-                        },
-                      });
+
+                    var config = {
+                      method: 'post',
+                      url: 'http://localhost:3001/userroutes/forgotpssword/changepassword',
+                      headers: { 
+                        'Content-Type': 'application/json'
+                      },
+                      data : ({
+                        'password': newconfpass,
+                        'email': email
+                      })
+                    };
+              
+                    axios(config)
+                        .then(function (res) {
+                          if (res.data.status==200)
+                          {
+                            toast(res.data.msg, {
+                              duration: 2000,
+                              position: 'top-center',
+                              // Styling
+                              style: {
+                                  padding: '20px',
+                                  fontWeight: '700',
+                                  width:'100%',
+                                  backgroundColor:'#00c851',
+                                  color:'white'
+                              },
+                              className: '',
+                              // Custom Icon
+                              icon: '✅',
+                              // Change colors of success/error/loading icon
+                              iconTheme: {
+                                primary: '#000'
+                              },
+                              // Aria
+                              ariaProps: {
+                                role: 'status',
+                                'aria-live': 'polite',
+                              },
+                            });
+                            window.location='/login';
+                          }
+                          else if(res.data.status==422)
+                            {
+                              toast(res.data.msg, {
+                                duration: 2000,
+                                position: 'top-center',
+                                // Styling
+                                style: {
+                                    padding: '20px',
+                                    fontWeight: '700',
+                                    width:'100%',
+                                    backgroundColor:' #f80759',
+                                    color:'white'
+                                },
+                                className: '',
+                                // Custom Icon
+                                icon: '⚠',
+                                // Change colors of success/error/loading icon
+                                iconTheme: {
+                                  primary: '#000'
+                                },
+                                // Aria
+                                ariaProps: {
+                                  role: 'status',
+                                  'aria-live': 'polite',
+                                },
+                              });
+                            }
+                          else
+                            alert("Unexpected Error !!");
+                            
+                          
+                        })
+                    .catch(function (error) {
+                        window.location='/signup';
+                    });
+
+      
                 }
             }
            
@@ -387,8 +528,8 @@ export default function ForgotPassword()
                             <input class="form-control" type="email" placeholder='Enter Your Email ' style={{ visibility :visibility0}} onChange={(e)=>setEmail(e.target.value)}/>
                             <input className='form-control' type="text" placeholder='Enter OTP' maxLength="6" onChange={(e)=>setOtp(e.target.value)} style={{ visibility :visibility4}}/>
 
-                            <input className='form-control' type="password" placeholder='Enter New Password' maxLength="6" onChange={(e)=>setNewpass(e.target.value)} value={newpass} style={{ visibility :visibility5}}/>               
-                            <input className='form-control' type="password" placeholder='Confirm Password' maxLength="6" onChange={(e)=>setNewconfpass(e.target.value)} value={newconfpass} style={{ visibility :visibility6}}/>
+                            <input  className='form-control' type="password" placeholder='Enter New Password'onChange={(e)=>setNewpass(e.target.value)} value={newpass} style={{ visibility :visibility5, marginBottom:'10px'}}/>               
+                            <input className='form-control' type="password" placeholder='Confirm Password' onChange={(e)=>setNewconfpass(e.target.value)} value={newconfpass} style={{ visibility :visibility6}}/>
                           
                             <button id="resend-id" className='btn btn-warning' type="button" onClick={submitform} style={{ border:'none',padding:'10px',visibility: visibility1,backgroundColor: 'deeppink',color:'white' }}>Resend otp</button>
                             <button id="send-id" className='btn btn-success' onClick={submitform} style={{ visibility: visibility2 }}> Send otp</button>

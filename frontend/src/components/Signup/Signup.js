@@ -3,6 +3,7 @@ import './Signup.css';
 import Header from '../Header/index';
 import Footer from '../footer/index';
 import axios from 'axios';
+import toast, { Toaster } from 'react-hot-toast';
 
 function Signup()
 {
@@ -18,56 +19,206 @@ function Signup()
     event.preventDefault();
     if(!name || !email || !password || !year  || !dept || !confirmpassword)
     {
-      alert("All fields Are Mandatory");
+      toast('All fields are mandatory!!', {
+        duration: 2000,
+        position: 'top-center',
+        // Styling
+        style: {
+            padding: '20px',
+            fontWeight: '700',
+            width:'100%',
+            backgroundColor:' #f80759',
+            color:'white'
+        },
+        className: '',
+        // Custom Icon
+        icon: '⚠',
+        // Change colors of success/error/loading icon
+        iconTheme: {
+          primary: '#000'
+        },
+        // Aria
+        ariaProps: {
+          role: 'status',
+          'aria-live': 'polite',
+        },
+      });
     }
     else
     {
-      if(password.length<=5)
+      const regex=new RegExp('[a-t]+[0-9]+@[c-m]+\.[a-c]+\.[i-n]{2,3}');
+      console.log(regex.test(email));
+      if(!regex.test(email))
       {
-        alert("Password length should be greater than 5 !!");
+        toast('Email should be College Email!!', {
+          duration: 2000,
+          position: 'top-center',
+          // Styling
+          style: {
+              padding: '20px',
+              fontWeight: '700',
+              width:'100%',
+              backgroundColor:' #f80759',
+              color:'white'
+          },
+          className: '',
+          // Custom Icon
+          icon: '⚠',
+          // Change colors of success/error/loading icon
+          iconTheme: {
+            primary: '#000'
+          },
+          // Aria
+          ariaProps: {
+            role: 'status',
+            'aria-live': 'polite',
+          },
+        });
       }
       else
       {
-        if(password==confirmpassword)
+        if(password.length<=5)
         {
-            var config = {
-                  method: 'post',
-                  url: 'http://localhost:3001/userroutes/signup/',
-                  headers: { 
-                    'Content-Type': 'application/json'
-                  },
-                  data : ({
-                    'username': name,
-                    'email': email,
-                    'year': year,
-                    'password': password,
-                    'dept': dept
-                  })
-                };
-          
-                axios(config)
-                    .then(function (res) {
-                      if (res.data.status==200)
-                      {
-                        alert(res.data.msg);
-                        window.location='/login';
-                      }
-                      else if(res.data.status==422)
-                        alert(res.data.msg);
-                      else
-                        alert("Unexpected Error !!");
-                        
-                      
-                    })
-                .catch(function (error) {
-                    window.location='/signup';
-                });
+          toast('Password should be greather than length 5!!', {
+            duration: 2000,
+            position: 'top-center',
+            // Styling
+            style: {
+                padding: '20px',
+                fontWeight: '700',
+                width:'100%',
+                backgroundColor:' #f80759',
+                color:'white'
+            },
+            className: '',
+            // Custom Icon
+            icon: '⚠',
+            // Change colors of success/error/loading icon
+            iconTheme: {
+              primary: '#000'
+            },
+            // Aria
+            ariaProps: {
+              role: 'status',
+              'aria-live': 'polite',
+            },
+          });
         }
         else
         {
-          alert("Password Mismatch !!");
+          if(password==confirmpassword)
+          {
+              var config = {
+                    method: 'post',
+                    url: 'http://localhost:3001/userroutes/signup/',
+                    headers: { 
+                      'Content-Type': 'application/json'
+                    },
+                    data : ({
+                      'username': name,
+                      'email': email,
+                      'year': year,
+                      'password': password,
+                      'dept': dept
+                    })
+                  };
+            
+                  axios(config)
+                      .then(function (res) {
+                        if (res.data.status==200)
+                        {
+                          toast(res.data.msg, {
+                            duration: 2000,
+                            position: 'top-center',
+                            // Styling
+                            style: {
+                                padding: '20px',
+                                fontWeight: '700',
+                                width:'100%',
+                                backgroundColor:'#00c851',
+                                color:'white'
+                            },
+                            className: '',
+                            // Custom Icon
+                            icon: '✅',
+                            // Change colors of success/error/loading icon
+                            iconTheme: {
+                              primary: '#000'
+                            },
+                            // Aria
+                            ariaProps: {
+                              role: 'status',
+                              'aria-live': 'polite',
+                            },
+                          });
+                          window.location='/login';
+                        }
+                        else if(res.data.status==422)
+                          {
+                            toast(res.data.msg, {
+                              duration: 2000,
+                              position: 'top-center',
+                              // Styling
+                              style: {
+                                  padding: '20px',
+                                  fontWeight: '700',
+                                  width:'100%',
+                                  backgroundColor:' #f80759',
+                                  color:'white'
+                              },
+                              className: '',
+                              // Custom Icon
+                              icon: '⚠',
+                              // Change colors of success/error/loading icon
+                              iconTheme: {
+                                primary: '#000'
+                              },
+                              // Aria
+                              ariaProps: {
+                                role: 'status',
+                                'aria-live': 'polite',
+                              },
+                            });
+                          }
+                        else
+                          alert("Unexpected Error !!");
+                          
+                        
+                      })
+                  .catch(function (error) {
+                      window.location='/signup';
+                  });
+          }
+          else
+          {
+            toast("Password Mismatch !!", {
+              duration: 2000,
+              position: 'top-center',
+              // Styling
+              style: {
+                  padding: '20px',
+                  fontWeight: '700',
+                  width:'100%',
+                  backgroundColor:' #f80759',
+                  color:'white'
+              },
+              className: '',
+              // Custom Icon
+              icon: '⚠',
+              // Change colors of success/error/loading icon
+              iconTheme: {
+                primary: '#000'
+              },
+              // Aria
+              ariaProps: {
+                role: 'status',
+                'aria-live': 'polite',
+              },
+            });
+          }
         }
       }
+     
         
     }
      
@@ -176,6 +327,8 @@ return(
         </div>
     </div>
     
+    <Toaster  position="top-right" reverseOrder={false}  />
+   
 <Footer/>
 </>
 

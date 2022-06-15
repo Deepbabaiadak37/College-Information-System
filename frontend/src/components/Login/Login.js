@@ -3,7 +3,7 @@ import Header from '../Header/index';
 import Footer from '../footer/index';
 import axios from 'axios';
 import '../Signup/Signup.css';
-
+import toast, { Toaster } from 'react-hot-toast';
 
 function Login()
 {

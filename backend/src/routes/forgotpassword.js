@@ -1,5 +1,5 @@
 const express = require('express')
-
+const bcryptjs = require('bcryptjs')
 const forgotpasswordtable = require('../model/forgotpassword')
 const MemberTable = require('../model/member')
 
@@ -79,6 +79,39 @@ router.post('/', async (req, res) =>
 })
 
 
+router.post('/matchotp',async(req,res)=>{
+
+    const {otp,email}=req.body;
+
+    const findemail=await forgotpasswordtable.findOne({ email});
+    if(!findemail)
+        return res.status(200).json({ msg:'Email not found !!',status:422});
+    
+    const chkotpvalid=await forgotpasswordtable.findOne({ email,otp});
+    if(chkotpvalid)
+        return res.status(200).json({ msg:'Otp Matched !!',status: 200});
+    else
+        return res.status(200).json({ msg:'OTP mismatch !!',status: 422});
+
+});
+
+
+router.post('/changepassword',async(req,res)=>{
+    const {password,email}=req.body;
+    const findemail=await MemberTable.findOne({ email});
+    if(!findemail)
+        return res.status(200).json({ msg:'Email not exists ',statu: 422});
+
+
+    const salt = await bcryptjs.genSalt()
+    const hashedpassword = await bcryptjs.hash(req.body.password,salt)
+    await MemberTable.updateOne({ 'email': email },{ $set : { 'password': hashedpassword}}).then(()=>{
+        return  res.status(200).json({   msg : "Password changed Successfully" , status : 200})
+     }).catch(err=>{
+         return res.status(200).json({ msg : err, status : 422})
+     })
+
+});
 
 
 module.exports = router

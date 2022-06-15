@@ -144,10 +144,11 @@ function Dashboard ()
                             Faculty Details
                           </Menu.Item>
                           
-                          <Menu.Item key="8"  icon={ <InfoCircleOutlined style={{ fontSize: '19px', color: '#fff' }}/>} >
+                        {/*  <Menu.Item key="8"  icon={ <InfoCircleOutlined style={{ fontSize: '19px', color: '#fff' }}/>} >
                             Campus Info
                           </Menu.Item>
 
+    */}
                           <Menu.Item key="9"  icon={ <LogoutOutlined style={{ fontSize: '22px', color: '#f80759' }} /> }>
 
                             <a style={{
