@@ -4,6 +4,8 @@ import { Modal, Button} from 'antd';
 import { Form } from 'react-bootstrap';
 import axios from "axios";
 import NoticeItems from './index1';
+import toast, { Toaster } from 'react-hot-toast';
+
 
 class NoticeManage extends React.Component
 {
@@ -47,9 +49,34 @@ class NoticeManage extends React.Component
         var today = new Date();
         var time = today.getHours() + ":" + today.getMinutes();
         var date =today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear();
+
         if(this.state.notice=="")
         {
-            alert("Enter Notice Field !!");
+            toast("All Fields are Mandatory !!", {
+                duration: 2000,
+                position: 'top-center',
+                // Styling
+                style: {
+                    padding: '20px',
+                    fontWeight: '700',
+                    width:'100%',
+                    backgroundColor:' #f80759',
+                    color:'white'
+                },
+                className: '',
+                // Custom Icon
+                icon: '⚠',
+                // Change colors of success/error/loading icon
+                iconTheme: {
+                  primary: '#000'
+                },
+                // Aria
+                ariaProps: {
+                  role: 'status',
+                  'aria-live': 'polite',
+                },
+              });
+
         }
         else
         {
@@ -70,12 +97,64 @@ class NoticeManage extends React.Component
                   .then(function (res) {
                     if(res.data.status==200)
                     {
-                        alert("Notice Added !!");
+                                                
+                        toast('Notice Added !!', {
+                            duration: 2000,
+                            position: 'top-center',
+                            // Styling
+                            style: {
+                                padding: '20px',
+                                fontWeight: '700',
+                                width:'100%',
+                                backgroundColor:'#00c851',
+                                color:'white'
+                            },
+                            className: '',
+                            // Custom Icon
+                            icon: '✅',
+                            // Change colors of success/error/loading icon
+                            iconTheme: {
+                            primary: '#000'
+                            },
+                            // Aria
+                            ariaProps: {
+                            role: 'status',
+                            'aria-live': 'polite',
+                            },
+                        });
+
                         window.location.reload();
                     }
                         
                     else if(res.data.status==400)
-                        alert(res.data.msg);
+                      {
+
+                        toast(res.data.msg, {
+                            duration: 2000,
+                            position: 'top-center',
+                            // Styling
+                            style: {
+                                padding: '20px',
+                                fontWeight: '700',
+                                width:'100%',
+                                backgroundColor:' #f80759',
+                                color:'white'
+                            },
+                            className: '',
+                            // Custom Icon
+                            icon: '⚠',
+                            // Change colors of success/error/loading icon
+                            iconTheme: {
+                              primary: '#000'
+                            },
+                            // Aria
+                            ariaProps: {
+                              role: 'status',
+                              'aria-live': 'polite',
+                            },
+                          });
+            
+                      }
                     else
                         alert("Unexpected Error !!");
                     
@@ -99,6 +178,7 @@ class NoticeManage extends React.Component
         return(
             <>
                 <h1>View Notice & Add</h1>
+                <Toaster  position="top-right" reverseOrder={false}  />
 
                 <button onClick={()=>this.setState({isModalVisible:true})} className="btn btn-primary" style={{ float:'right'}}>Add</button>
                 <Modal title="Notice" visible={this.state.isModalVisible} onCancel={()=>this.setState({isModalVisible:false})}  footer={[ <Button key="submit" onClick={this.handleSubmit} className="btn btn-cus" type="primary" > Submit</Button>,
