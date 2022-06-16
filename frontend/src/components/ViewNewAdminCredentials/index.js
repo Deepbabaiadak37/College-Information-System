@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import axios from "axios";
 import admin_image from '../images/admins.png';
+import toast, { Toaster } from 'react-hot-toast';
 
 
 function ViewNewAdminCredentials()
@@ -28,6 +29,33 @@ function ViewNewAdminCredentials()
     
           axios(config)
               .then(function (res) {
+                if(res.data.length===0)
+                {
+                    toast("No data available !!", {
+                        duration: 2000,
+                        position: 'top-center',
+                        // Styling
+                        style: {
+                            padding: '20px',
+                            fontWeight: '700',
+                            width:'100%',
+                            backgroundColor:' #f80759',
+                            color:'white'
+                        },
+                        className: '',
+                        // Custom Icon
+                        icon: '⚠',
+                        // Change colors of success/error/loading icon
+                        iconTheme: {
+                          primary: '#000'
+                        },
+                        // Aria
+                        ariaProps: {
+                          role: 'status',
+                          'aria-live': 'polite',
+                        },
+                      });
+                }
                 var arr=[];
                 for(let i=0;i<res.data.length;i++)
                 {
@@ -60,7 +88,30 @@ function ViewNewAdminCredentials()
             .then(function (res) { 
                 if(res.status==200)
                 {
-                    alert("admin Deleted Successfully!")
+                    toast('Admin data deleted Successfully !!', {
+                        duration: 2000,
+                        position: 'top-center',
+                        // Styling
+                        style: {
+                            padding: '20px',
+                            fontWeight: '700',
+                            width:'100%',
+                            backgroundColor:'#00c851',
+                            color:'white'
+                        },
+                        className: '',
+                        // Custom Icon
+                        icon: '✅',
+                        // Change colors of success/error/loading icon
+                        iconTheme: {
+                          primary: '#000'
+                        },
+                        // Aria
+                        ariaProps: {
+                          role: 'status',
+                          'aria-live': 'polite',
+                        },
+                      });
                 }   
                 var config = {
                     method: 'post',
@@ -75,6 +126,33 @@ function ViewNewAdminCredentials()
             
                   axios(config)
                       .then(function (res) {
+                        if(res.data.length===0)
+                        {
+                            toast("No data available!!", {
+                                duration: 2000,
+                                position: 'top-center',
+                                // Styling
+                                style: {
+                                    padding: '20px',
+                                    fontWeight: '700',
+                                    width:'100%',
+                                    backgroundColor:' #f80759',
+                                    color:'white'
+                                },
+                                className: '',
+                                // Custom Icon
+                                icon: '⚠',
+                                // Change colors of success/error/loading icon
+                                iconTheme: {
+                                  primary: '#000'
+                                },
+                                // Aria
+                                ariaProps: {
+                                  role: 'status',
+                                  'aria-live': 'polite',
+                                },
+                              });
+                        }
                         var arr=[];
                         for(let i=0;i<res.data.length;i++)
                         {
@@ -100,7 +178,31 @@ function ViewNewAdminCredentials()
         {
             if(document.getElementById(id).value.length<=5)
             {
-                alert("Password length should be greater than 5 !!");
+                toast("Password Length should be greater than 5 !!", {
+                    duration: 2000,
+                    position: 'top-center',
+                    // Styling
+                    style: {
+                        padding: '20px',
+                        fontWeight: '700',
+                        width:'100%',
+                        backgroundColor:' #f80759',
+                        color:'white'
+                    },
+                    className: '',
+                    // Custom Icon
+                    icon: '⚠',
+                    // Change colors of success/error/loading icon
+                    iconTheme: {
+                      primary: '#000'
+                    },
+                    // Aria
+                    ariaProps: {
+                      role: 'status',
+                      'aria-live': 'polite',
+                    },
+                  });
+    
             }
             else
             {
@@ -120,7 +222,30 @@ function ViewNewAdminCredentials()
                     .then(function (res) { 
                         if(res.status==200)
                         {
-                            alert("Password Changed Successfully!")
+                            toast('Password Changed successfully !!', {
+                                duration: 2000,
+                                position: 'top-center',
+                                // Styling
+                                style: {
+                                    padding: '20px',
+                                    fontWeight: '700',
+                                    width:'100%',
+                                    backgroundColor:'#00c851',
+                                    color:'white'
+                                },
+                                className: '',
+                                // Custom Icon
+                                icon: '✅',
+                                // Change colors of success/error/loading icon
+                                iconTheme: {
+                                  primary: '#000'
+                                },
+                                // Aria
+                                ariaProps: {
+                                  role: 'status',
+                                  'aria-live': 'polite',
+                                },
+                              });
                         }
                             
                     })
@@ -132,7 +257,31 @@ function ViewNewAdminCredentials()
         }
         else
         {
-            alert("Enter Password!!")
+            toast("Enter  Password !!", {
+                duration: 2000,
+                position: 'top-center',
+                // Styling
+                style: {
+                    padding: '20px',
+                    fontWeight: '700',
+                    width:'100%',
+                    backgroundColor:' #f80759',
+                    color:'white'
+                },
+                className: '',
+                // Custom Icon
+                icon: '⚠',
+                // Change colors of success/error/loading icon
+                iconTheme: {
+                  primary: '#000'
+                },
+                // Aria
+                ariaProps: {
+                  role: 'status',
+                  'aria-live': 'polite',
+                },
+              });
+
         }
 
         document.getElementById(id).value="";
@@ -145,6 +294,7 @@ function ViewNewAdminCredentials()
         <>
             <div className="container">
             <div className="row">
+            <Toaster  position="top-right" reverseOrder={false}  />
                 <div className="col-md-6 col-lg-6">
                     <h3 className="d-flex justify-content-center">Search Admin's Details & Credentials</h3>
                 </div>

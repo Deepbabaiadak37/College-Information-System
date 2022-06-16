@@ -1,7 +1,7 @@
 import React , { useState } from "react";
 import pic from'../images/camarks.png';
 import axios from 'axios';
-
+import toast, { Toaster } from 'react-hot-toast';
 
 function TeacherGivenCaMarks()
 {
@@ -61,12 +61,64 @@ function TeacherGivenCaMarks()
       event.preventDefault();
       if(!coursename || !year || !dept || !exam || !sem || !email || !marks)
       {
-        alert("Please Fill All the Fields !!")
+        toast("All Fields are Mandatory !!", {
+            duration: 2000,
+            position: 'top-center',
+            // Styling
+            style: {
+                padding: '20px',
+                fontWeight: '700',
+                width:'100%',
+                backgroundColor:' #f80759',
+                color:'white'
+            },
+            className: '',
+            // Custom Icon
+            icon: '⚠',
+            // Change colors of success/error/loading icon
+            iconTheme: {
+              primary: '#000'
+            },
+            // Aria
+            ariaProps: {
+              role: 'status',
+              'aria-live': 'polite',
+            },
+          });
+
+
       }
       else
       {
         if(marks>25)
-            alert("Marks Coul be upto 25 !!")
+        {
+            toast("Max Marks 25 allowed!!", {
+                duration: 2000,
+                position: 'top-center',
+                // Styling
+                style: {
+                    padding: '20px',
+                    fontWeight: '700',
+                    width:'100%',
+                    backgroundColor:' #f80759',
+                    color:'white'
+                },
+                className: '',
+                // Custom Icon
+                icon: '⚠',
+                // Change colors of success/error/loading icon
+                iconTheme: {
+                  primary: '#000'
+                },
+                // Aria
+                ariaProps: {
+                  role: 'status',
+                  'aria-live': 'polite',
+                },
+              });
+
+
+        }
         else
         {
             var config = {
@@ -89,10 +141,60 @@ function TeacherGivenCaMarks()
               axios(config)
                   .then(function (res) {
                     if(res.data.status==422)
-                        alert("Marks Already Given !!")
+                     {
+                        toast("Marks already given !!", {
+                            duration: 2000,
+                            position: 'top-center',
+                            // Styling
+                            style: {
+                                padding: '20px',
+                                fontWeight: '700',
+                                width:'100%',
+                                backgroundColor:' #f80759',
+                                color:'white'
+                            },
+                            className: '',
+                            // Custom Icon
+                            icon: '⚠',
+                            // Change colors of success/error/loading icon
+                            iconTheme: {
+                              primary: '#000'
+                            },
+                            // Aria
+                            ariaProps: {
+                              role: 'status',
+                              'aria-live': 'polite',
+                            },
+                          });
+            
+            
+                     }
                     else if(res.data.status==200)
                     {
-                        alert("Marks Added Successfully !!");
+                        toast('Marks added Successfully !!', {
+                            duration: 2000,
+                            position: 'top-center',
+                            // Styling
+                            style: {
+                                padding: '20px',
+                                fontWeight: '700',
+                                width:'100%',
+                                backgroundColor:'#00c851',
+                                color:'white'
+                            },
+                            className: '',
+                            // Custom Icon
+                            icon: '✅',
+                            // Change colors of success/error/loading icon
+                            iconTheme: {
+                              primary: '#000'
+                            },
+                            // Aria
+                            ariaProps: {
+                              role: 'status',
+                              'aria-live': 'polite',
+                            },
+                          });
                         setCoursename("");
                         setYear("");
                         setDept("");
@@ -103,7 +205,32 @@ function TeacherGivenCaMarks()
                     }
                     else
                     {
-                        alert("Unexpected Error !!")
+                        toast("Unexpected Error !!", {
+                            duration: 2000,
+                            position: 'top-center',
+                            // Styling
+                            style: {
+                                padding: '20px',
+                                fontWeight: '700',
+                                width:'100%',
+                                backgroundColor:' #f80759',
+                                color:'white'
+                            },
+                            className: '',
+                            // Custom Icon
+                            icon: '⚠',
+                            // Change colors of success/error/loading icon
+                            iconTheme: {
+                              primary: '#000'
+                            },
+                            // Aria
+                            ariaProps: {
+                              role: 'status',
+                              'aria-live': 'polite',
+                            },
+                          });
+            
+            
                     }
                     
                   })
@@ -140,6 +267,7 @@ function TeacherGivenCaMarks()
          
          if(!dept || !year)
          {
+            
          }
          else{
             axios(config)
@@ -242,6 +370,7 @@ function TeacherGivenCaMarks()
     return(
         <>
         <h1 className="text-center">CA Marks Upload</h1>
+        <Toaster  position="top-right" reverseOrder={false}  />
         <br></br>
         <div className="row">
             <div className="col-lg-6">

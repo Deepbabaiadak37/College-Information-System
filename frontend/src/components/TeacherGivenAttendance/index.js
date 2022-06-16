@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import {Card} from 'react-bootstrap';
 import './index.css';
 import axios from 'axios';
-
+import toast, { Toaster } from 'react-hot-toast';
 function TeacherGivenAttendance()
 {
    
@@ -138,7 +138,30 @@ function TeacherGivenAttendance()
         
     if(attendancesubj=="")
     {
-        alert("Select the Subject first !!")
+        toast("Select Subject First!!", {
+            duration: 2000,
+            position: 'top-center',
+            // Styling
+            style: {
+                padding: '20px',
+                fontWeight: '700',
+                width:'100%',
+                backgroundColor:' #f80759',
+                color:'white'
+            },
+            className: '',
+            // Custom Icon
+            icon: '⚠',
+            // Change colors of success/error/loading icon
+            iconTheme: {
+              primary: '#000'
+            },
+            // Aria
+            ariaProps: {
+              role: 'status',
+              'aria-live': 'polite',
+            },
+          });
     }
     else
     {
@@ -166,9 +189,59 @@ function TeacherGivenAttendance()
               })
           .catch(function (error) {
             if(error.status=422)
-                alert("Alreadey marked as present")
+              {
+                toast("Already marked as present !!", {
+                    duration: 2000,
+                    position: 'top-center',
+                    // Styling
+                    style: {
+                        padding: '20px',
+                        fontWeight: '700',
+                        width:'100%',
+                        backgroundColor:' #f80759',
+                        color:'white'
+                    },
+                    className: '',
+                    // Custom Icon
+                    icon: '⚠',
+                    // Change colors of success/error/loading icon
+                    iconTheme: {
+                      primary: '#000'
+                    },
+                    // Aria
+                    ariaProps: {
+                      role: 'status',
+                      'aria-live': 'polite',
+                    },
+                  });
+              }
             else if(error.status=500)
-                alert("All fields are mandatory !!")
+              {
+                toast("All Fields are Mandatory !!", {
+                    duration: 2000,
+                    position: 'top-center',
+                    // Styling
+                    style: {
+                        padding: '20px',
+                        fontWeight: '700',
+                        width:'100%',
+                        backgroundColor:' #f80759',
+                        color:'white'
+                    },
+                    className: '',
+                    // Custom Icon
+                    icon: '⚠',
+                    // Change colors of success/error/loading icon
+                    iconTheme: {
+                      primary: '#000'
+                    },
+                    // Aria
+                    ariaProps: {
+                      role: 'status',
+                      'aria-live': 'polite',
+                    },
+                  });
+              }
           });
     }
 }
@@ -179,7 +252,30 @@ function TeacherGivenAttendance()
 
         if(attendancesubj=="")
         {
-            alert("Select the Subject first !!")
+            toast("Select Subject first!!", {
+                duration: 2000,
+                position: 'top-center',
+                // Styling
+                style: {
+                    padding: '20px',
+                    fontWeight: '700',
+                    width:'100%',
+                    backgroundColor:' #f80759',
+                    color:'white'
+                },
+                className: '',
+                // Custom Icon
+                icon: '⚠',
+                // Change colors of success/error/loading icon
+                iconTheme: {
+                  primary: '#000'
+                },
+                // Aria
+                ariaProps: {
+                  role: 'status',
+                  'aria-live': 'polite',
+                },
+              });
         }
         else
         {
@@ -207,7 +303,32 @@ function TeacherGivenAttendance()
                   })
               .catch(function (error) {
                 if(error.status=422)
-                    alert("Alreadey marked as present")
+                  {
+                    toast("Already marked!!", {
+                        duration: 2000,
+                        position: 'top-center',
+                        // Styling
+                        style: {
+                            padding: '20px',
+                            fontWeight: '700',
+                            width:'100%',
+                            backgroundColor:' #f80759',
+                            color:'white'
+                        },
+                        className: '',
+                        // Custom Icon
+                        icon: '⚠',
+                        // Change colors of success/error/loading icon
+                        iconTheme: {
+                          primary: '#000'
+                        },
+                        // Aria
+                        ariaProps: {
+                          role: 'status',
+                          'aria-live': 'polite',
+                        },
+                      });
+                  }
               });
         }
     }
@@ -220,6 +341,7 @@ return(
 
 <div className='container'> 
 <h1>Mark Attendance --Select Batch and Subject</h1>
+<Toaster  position="top-right" reverseOrder={false}  />
 <div className='row'>
    
     <div>

@@ -15,13 +15,61 @@ function Login()
         event.preventDefault();
         if(!email || !password )
         {
-            alert("All fields are mandatory !!");
+            toast("All Fields are Mandatory !!", {
+                duration: 2000,
+                position: 'top-center',
+                // Styling
+                style: {
+                    padding: '20px',
+                    fontWeight: '700',
+                    width:'100%',
+                    backgroundColor:' #f80759',
+                    color:'white'
+                },
+                className: '',
+                // Custom Icon
+                icon: '⚠',
+                // Change colors of success/error/loading icon
+                iconTheme: {
+                  primary: '#000'
+                },
+                // Aria
+                ariaProps: {
+                  role: 'status',
+                  'aria-live': 'polite',
+                },
+              });
+
         }
         else
         {
             if(password.length<=5)
             {
-                alert("Passsword length should be greater than 5")
+                toast("Password length should be greater than 5 !!", {
+                    duration: 2000,
+                    position: 'top-center',
+                    // Styling
+                    style: {
+                        padding: '20px',
+                        fontWeight: '700',
+                        width:'100%',
+                        backgroundColor:' #f80759',
+                        color:'white'
+                    },
+                    className: '',
+                    // Custom Icon
+                    icon: '⚠',
+                    // Change colors of success/error/loading icon
+                    iconTheme: {
+                      primary: '#000'
+                    },
+                    // Aria
+                    ariaProps: {
+                      role: 'status',
+                      'aria-live': 'polite',
+                    },
+                  });
+    
             }
             else
             {
@@ -41,15 +89,93 @@ function Login()
                     .then(function (res) 
                     {
                         if(res.data.status==422)
-                            alert(res.data.msg);
+                        {
+                            toast(res.data.msg, {
+                                duration: 2000,
+                                position: 'top-center',
+                                // Styling
+                                style: {
+                                    padding: '20px',
+                                    fontWeight: '700',
+                                    width:'100%',
+                                    backgroundColor:' #f80759',
+                                    color:'white'
+                                },
+                                className: '',
+                                // Custom Icon
+                                icon: '⚠',
+                                // Change colors of success/error/loading icon
+                                iconTheme: {
+                                  primary: '#000'
+                                },
+                                // Aria
+                                ariaProps: {
+                                  role: 'status',
+                                  'aria-live': 'polite',
+                                },
+                              });
+                
+                        }
                         else if(res.data.status===200)
                         {
+
+                                                        
+                            toast('Login Successfull !!', {
+                                duration: 2000,
+                                position: 'top-center',
+                                // Styling
+                                style: {
+                                    padding: '20px',
+                                    fontWeight: '700',
+                                    width:'100%',
+                                    backgroundColor:'#00c851',
+                                    color:'white'
+                                },
+                                className: '',
+                                // Custom Icon
+                                icon: '✅',
+                                // Change colors of success/error/loading icon
+                                iconTheme: {
+                                primary: '#000'
+                                },
+                                // Aria
+                                ariaProps: {
+                                role: 'status',
+                                'aria-live': 'polite',
+                                },
+                            });
                             localStorage.clear();
                             localStorage.setItem('token',res.data.token);
                             window.location='/dashboard'; 
                         }
                         else
-                            alert("Unexpected  Error !!");
+                        {
+                            toast("Unexpected Error!!", {
+                                duration: 2000,
+                                position: 'top-center',
+                                // Styling
+                                style: {
+                                    padding: '20px',
+                                    fontWeight: '700',
+                                    width:'100%',
+                                    backgroundColor:' #f80759',
+                                    color:'white'
+                                },
+                                className: '',
+                                // Custom Icon
+                                icon: '⚠',
+                                // Change colors of success/error/loading icon
+                                iconTheme: {
+                                  primary: '#000'
+                                },
+                                // Aria
+                                ariaProps: {
+                                  role: 'status',
+                                  'aria-live': 'polite',
+                                },
+                              });
+                
+                        }
                     })
                     .catch(function (error) 
                     {
@@ -99,6 +225,7 @@ function Login()
             </div>
         </div>
     </div>
+    <Toaster  position="top-right" reverseOrder={false}  />
 		<Footer/>
         </>
 

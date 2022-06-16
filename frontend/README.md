@@ -26,7 +26,7 @@ import toast, { Toaster } from 'react-hot-toast';
 
 
 -->
-toast("All Fields are Mandatory !!", {
+            toast("All Fields are Mandatory !!", {
                 duration: 2000,
                 position: 'top-center',
                 // Styling

@@ -14,7 +14,7 @@ router.post('/add', async (req, res) =>
         const member = await AdminTable.findOne({ email:email,type:type})
         if(member)
         {
-            res.status(400).json({"error":"Member Already Present"});
+          return   res.status(200).json({ msg:"Member Already Present",status:422});
         }
         const salt = await bcryptjs.genSalt()
         const hashedpassword = await bcryptjs.hash(req.body.password,salt)
@@ -26,10 +26,10 @@ router.post('/add', async (req, res) =>
         })
 
         await newmember.save().then(()=>{
-            console.log("POST /Admin  HTTP/1.1 200 " + Date.now())
-            res.status(201).json({message:"Admin Registered Successfully"})
+            
+           return  res.status(200).json({msg:"Admin Registered Successfully",status:200});
         }).catch(err=>{
-            console.log("POST /Admin HTTP/1.1 400" + Date.now())
+           return res.status(200).json({ msg:err,status:422});
         })
 
 } )

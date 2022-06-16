@@ -1,7 +1,7 @@
 import React , { useState } from "react";
 import pic from'../images/adminadd.png';
 import axios from 'axios';
-
+import toast, { Toaster } from 'react-hot-toast';
 
 function AddNewAdminCredential()
 {
@@ -14,13 +14,59 @@ function AddNewAdminCredential()
       event.preventDefault();
         if(!type || !email || !password)
         {
-            alert("All fields are mandatory !!");
+            toast("All Fields are Mandatory !!", {
+                duration: 2000,
+                position: 'top-center',
+                // Styling
+                style: {
+                    padding: '20px',
+                    fontWeight: '700',
+                    width:'100%',
+                    backgroundColor:' #f80759',
+                    color:'white'
+                },
+                className: '',
+                // Custom Icon
+                icon: '⚠',
+                // Change colors of success/error/loading icon
+                iconTheme: {
+                  primary: '#000'
+                },
+                // Aria
+                ariaProps: {
+                  role: 'status',
+                  'aria-live': 'polite',
+                },
+              });
         }
         else
         {
             if(password.length<=5)
             {
-                alert("Password length should be greater than 5");
+                toast("Password Length should be greater than 5 !!", {
+                    duration: 2000,
+                    position: 'top-center',
+                    // Styling
+                    style: {
+                        padding: '20px',
+                        fontWeight: '700',
+                        width:'100%',
+                        backgroundColor:' #f80759',
+                        color:'white'
+                    },
+                    className: '',
+                    // Custom Icon
+                    icon: '⚠',
+                    // Change colors of success/error/loading icon
+                    iconTheme: {
+                      primary: '#000'
+                    },
+                    // Aria
+                    ariaProps: {
+                      role: 'status',
+                      'aria-live': 'polite',
+                    },
+                  });
             }
             else
             {
@@ -39,7 +85,88 @@ function AddNewAdminCredential()
             
                   axios(config)
                       .then(function (res) {
-                        console.log(res);
+                        if(res.data.status==422)
+                        {
+                            toast(res.data.msg, {
+                                duration: 2000,
+                                position: 'top-center',
+                                // Styling
+                                style: {
+                                    padding: '20px',
+                                    fontWeight: '700',
+                                    width:'100%',
+                                    backgroundColor:' #f80759',
+                                    color:'white'
+                                },
+                                className: '',
+                                // Custom Icon
+                                icon: '⚠',
+                                // Change colors of success/error/loading icon
+                                iconTheme: {
+                                  primary: '#000'
+                                },
+                                // Aria
+                                ariaProps: {
+                                  role: 'status',
+                                  'aria-live': 'polite',
+                                },
+                              });
+                        }
+                        else if(res.data.status==200)
+                        {
+                            
+                            toast(res.data.msg, {
+                                duration: 2000,
+                                position: 'top-center',
+                                // Styling
+                                style: {
+                                    padding: '20px',
+                                    fontWeight: '700',
+                                    width:'100%',
+                                    backgroundColor:'#00c851',
+                                    color:'white'
+                                },
+                                className: '',
+                                // Custom Icon
+                                icon: '✅',
+                                // Change colors of success/error/loading icon
+                                iconTheme: {
+                                primary: '#000'
+                                },
+                                // Aria
+                                ariaProps: {
+                                role: 'status',
+                                'aria-live': 'polite',
+                                },
+                            });
+                        }
+                        else
+                        {
+                            toast('Unexpected Error !!', {
+                                duration: 2000,
+                                position: 'top-center',
+                                // Styling
+                                style: {
+                                    padding: '20px',
+                                    fontWeight: '700',
+                                    width:'100%',
+                                    backgroundColor:' #f80759',
+                                    color:'white'
+                                },
+                                className: '',
+                                // Custom Icon
+                                icon: '⚠',
+                                // Change colors of success/error/loading icon
+                                iconTheme: {
+                                  primary: '#000'
+                                },
+                                // Aria
+                                ariaProps: {
+                                  role: 'status',
+                                  'aria-live': 'polite',
+                                },
+                              });
+                        }
                         
                         
                       })
@@ -57,6 +184,7 @@ function AddNewAdminCredential()
         <>
         <h1 className="text-center">Add Admins</h1>
         <br></br>
+        <Toaster  position="top-right" reverseOrder={false}  />
         <div className="row">
             <div className="col-lg-6">
                 <img src={pic} style={{height:'auto',width:'100%',borderRadius:'40px'}} />

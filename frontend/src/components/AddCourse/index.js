@@ -2,6 +2,10 @@ import React , { useState } from "react";
 import pic from'../images/addcourse.png';
 import axios from 'axios';
 
+import toast, { Toaster } from 'react-hot-toast';
+
+
+
 
 function AddCourse()
 {
@@ -16,7 +20,30 @@ function AddCourse()
       
       if(!coursecode || !coursename || !year || !dept)
       {
-        alert("All fields are Mandatory !!")
+        toast("All Fields are Mandatory !!", {
+            duration: 2000,
+            position: 'top-center',
+            // Styling
+            style: {
+                padding: '20px',
+                fontWeight: '700',
+                width:'100%',
+                backgroundColor:' #f80759',
+                color:'white'
+            },
+            className: '',
+            // Custom Icon
+            icon: '⚠',
+            // Change colors of success/error/loading icon
+            iconTheme: {
+              primary: '#000'
+            },
+            // Aria
+            ariaProps: {
+              role: 'status',
+              'aria-live': 'polite',
+            },
+          });
       }
       else
       {
@@ -38,7 +65,30 @@ function AddCourse()
               .then(function (res) {
                 if(res.data.status==200)
                 {
-                    alert("Added Successfully !!");
+                    toast('Added Successfully !!', {
+                        duration: 2000,
+                        position: 'top-center',
+                        // Styling
+                        style: {
+                            padding: '20px',
+                            fontWeight: '700',
+                            width:'100%',
+                            backgroundColor:'#00c851',
+                            color:'white'
+                        },
+                        className: '',
+                        // Custom Icon
+                        icon: '✅',
+                        // Change colors of success/error/loading icon
+                        iconTheme: {
+                          primary: '#000'
+                        },
+                        // Aria
+                        ariaProps: {
+                          role: 'status',
+                          'aria-live': 'polite',
+                        },
+                      });
                     setCoursecode("");
                     setCoursename("");
                     setYear("");
@@ -46,7 +96,32 @@ function AddCourse()
 
                 }    
                 else 
-                    alert("Error !!")
+                {
+                    toast("Error Occurred!!", {
+                        duration: 2000,
+                        position: 'top-center',
+                        // Styling
+                        style: {
+                            padding: '20px',
+                            fontWeight: '700',
+                            width:'100%',
+                            backgroundColor:' #f80759',
+                            color:'white'
+                        },
+                        className: '',
+                        // Custom Icon
+                        icon: '⚠',
+                        // Change colors of success/error/loading icon
+                        iconTheme: {
+                          primary: '#000'
+                        },
+                        // Aria
+                        ariaProps: {
+                          role: 'status',
+                          'aria-live': 'polite',
+                        },
+                      });
+                }
                 
                 
               })
@@ -60,7 +135,7 @@ function AddCourse()
    
     return(
         <>
-        <h1 className="text-center">Add New Course</h1>
+        <h1 className="text-center">Add New Course</h1><Toaster  position="top-right" reverseOrder={false}  />
         <br></br>
         <div className="row">
             <div className="col-lg-6">

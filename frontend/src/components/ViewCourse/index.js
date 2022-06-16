@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './index.css';
+import pic from '../images/nodata.png'
+import toast, { Toaster } from 'react-hot-toast';
+
+
 function ViewCourse()
 {
     const [year,setYear]=useState("")
@@ -11,7 +15,32 @@ function ViewCourse()
     const submitfunc=()=>{
 
         if(!year || !dept)
-            alert("All fields are Mandatory!!");
+        {
+            toast("All Fields are Mandatory !!", {
+                duration: 2000,
+                position: 'top-center',
+                // Styling
+                style: {
+                    padding: '20px',
+                    fontWeight: '700',
+                    width:'100%',
+                    backgroundColor:' #f80759',
+                    color:'white'
+                },
+                className: '',
+                // Custom Icon
+                icon: '⚠',
+                // Change colors of success/error/loading icon
+                iconTheme: {
+                  primary: '#000'
+                },
+                // Aria
+                ariaProps: {
+                  role: 'status',
+                  'aria-live': 'polite',
+                },
+              });
+        }
         else
         {
             var config = {
@@ -28,7 +57,34 @@ function ViewCourse()
         
               axios(config)
                   .then(function (res) {
-                    
+                if(res.data.length===0)
+                {
+                    toast("No data available!!", {
+                        duration: 2000,
+                        position: 'top-center',
+                        // Styling
+                        style: {
+                            padding: '20px',
+                            fontWeight: '700',
+                            width:'100%',
+                            backgroundColor:' #f80759',
+                            color:'white'
+                        },
+                        className: '',
+                        // Custom Icon
+                        icon: '⚠',
+                        // Change colors of success/error/loading icon
+                        iconTheme: {
+                          primary: '#000'
+                        },
+                        // Aria
+                        ariaProps: {
+                          role: 'status',
+                          'aria-live': 'polite',
+                        },
+                      });
+                }
+
                 var arr=[];
                 for(let i=0;i<res.data.length;i++)
                 {
@@ -63,7 +119,30 @@ function ViewCourse()
                 console.log(res);  
                 if(res.status==200)
                 {
-                    alert("Course Deleted Successfully!")
+                    toast('Course Deleted Successfully !!', {
+                        duration: 2000,
+                        position: 'top-center',
+                        // Styling
+                        style: {
+                            padding: '20px',
+                            fontWeight: '700',
+                            width:'100%',
+                            backgroundColor:'#00c851',
+                            color:'white'
+                        },
+                        className: '',
+                        // Custom Icon
+                        icon: '✅',
+                        // Change colors of success/error/loading icon
+                        iconTheme: {
+                        primary: '#000'
+                        },
+                        // Aria
+                        ariaProps: {
+                        role: 'status',
+                        'aria-live': 'polite',
+                        },
+                    });
                     submitfunc();
                 }
                     
@@ -78,6 +157,8 @@ return(
 
 <div class="container">
     <div className="row">
+    <Toaster  position="top-right" reverseOrder={false}  />
+
                     <div class="form-group">
                         <select  className="form-control"  onChange={e=>setYear(e.target.value)} value={year} >
                             <option className="text-center" value="0">--Select Year--</option>
@@ -145,7 +226,7 @@ return(
            ):(
            <>
             <h1 style={{ background:'#f80759',color:'white',padding:'15px'}}>
-                <img src="https://cdn-icons.flaticon.com/png/128/5108/premium/5108924.png?token=exp=1653052113~hmac=67ac7dd80bf789d28db33ad000080663" width="60" height="60"/>
+                <img src={pic} width="60" height="60"/>
                 Nothing is available for this Seach </h1>
            </>
            )
