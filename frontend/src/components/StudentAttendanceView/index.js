@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-
+import pic from '../images/nodata.png';
 import jwt_decode from 'jwt-decode';
 
 function StudentAttendanceView()
@@ -84,8 +84,8 @@ return(
            ):(
            <>
             <h1 style={{ background:'#f80759',color:'white',padding:'15px'}}>
-                <img src="https://cdn-icons.flaticon.com/png/128/5108/premium/5108924.png?token=exp=1653052113~hmac=67ac7dd80bf789d28db33ad000080663" width="60" height="60"/>
-                Nothing is available for this Seach </h1>
+                <img src={pic} width="60" height="60"/>
+                Nothing is available to Show </h1>
            </>
            )
         }

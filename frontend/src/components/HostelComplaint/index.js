@@ -1,7 +1,7 @@
 import React , { useState } from "react";
 import pic from'../images/a5.png';
 import axios from 'axios';
-
+import toast, { Toaster } from 'react-hot-toast';
 
 function HostelComplaint()
 {
@@ -14,7 +14,30 @@ function HostelComplaint()
       event.preventDefault();
         if(!name || !contact || !roomno || !details)
         {
-            alert("Please fill all the Fields!!")
+            toast("All Fields are Mandatory !!", {
+                duration: 2000,
+                position: 'top-center',
+                // Styling
+                style: {
+                    padding: '20px',
+                    fontWeight: '700',
+                    width:'100%',
+                    backgroundColor:' #f80759',
+                    color:'white'
+                },
+                className: '',
+                // Custom Icon
+                icon: '⚠',
+                // Change colors of success/error/loading icon
+                iconTheme: {
+                  primary: '#000'
+                },
+                // Aria
+                ariaProps: {
+                  role: 'status',
+                  'aria-live': 'polite',
+                },
+              });
            
 
         }
@@ -22,7 +45,30 @@ function HostelComplaint()
         {
             if(contact.length!=10)
             {
-                alert("Please Enter 10 digit Contact !!")
+                toast("Enter 10 Digit Contact !!", {
+                    duration: 2000,
+                    position: 'top-center',
+                    // Styling
+                    style: {
+                        padding: '20px',
+                        fontWeight: '700',
+                        width:'100%',
+                        backgroundColor:' #f80759',
+                        color:'white'
+                    },
+                    className: '',
+                    // Custom Icon
+                    icon: '⚠',
+                    // Change colors of success/error/loading icon
+                    iconTheme: {
+                      primary: '#000'
+                    },
+                    // Aria
+                    ariaProps: {
+                      role: 'status',
+                      'aria-live': 'polite',
+                    },
+                  });
             }
             else
             {
@@ -41,7 +87,30 @@ function HostelComplaint()
                   };
             
                   axios(config).then(function (res) {
-                        alert("Complain Added Successfully!!");
+                    toast('Complain Added Successfully!!', {
+                        duration: 2000,
+                        position: 'top-center',
+                        // Styling
+                        style: {
+                            padding: '20px',
+                            fontWeight: '700',
+                            width:'100%',
+                            backgroundColor:'#00c851',
+                            color:'white'
+                        },
+                        className: '',
+                        // Custom Icon
+                        icon: '✅',
+                        // Change colors of success/error/loading icon
+                        iconTheme: {
+                          primary: '#000'
+                        },
+                        // Aria
+                        ariaProps: {
+                          role: 'status',
+                          'aria-live': 'polite',
+                        },
+                      });
                         setName("");
                         setContact("");
                         setRoomno("");
@@ -58,6 +127,7 @@ function HostelComplaint()
     return(
         <>
         <h1 className="text-center">Hostel Complain Form</h1>
+        <Toaster  position="top-right" reverseOrder={false}  />
         <br></br>
         <div className="row">
             <div className="col-lg-6">

@@ -6,7 +6,7 @@ import jwtDecode from "jwt-decode";
 import axios from "axios";
 import { UploadOutlined } from '@ant-design/icons';
 import pic from '../images/camarksshow.png'
-
+import toast, { Toaster } from 'react-hot-toast';
 
 function Camarks()
 {
@@ -44,7 +44,30 @@ function Camarks()
     const SearchMarks=()=>{
         if(!exam || !sem)
         {
-            alert("All fields Mandatory!!")
+            toast("All Fields are Mandatory !!", {
+                duration: 2000,
+                position: 'top-center',
+                // Styling
+                style: {
+                    padding: '20px',
+                    fontWeight: '700',
+                    width:'100%',
+                    backgroundColor:' #f80759',
+                    color:'white'
+                },
+                className: '',
+                // Custom Icon
+                icon: '⚠',
+                // Change colors of success/error/loading icon
+                iconTheme: {
+                  primary: '#000'
+                },
+                // Aria
+                ariaProps: {
+                  role: 'status',
+                  'aria-live': 'polite',
+                },
+              });
         }
         else
         {
@@ -63,6 +86,34 @@ function Camarks()
         
               axios(config)
                   .then(function (res) {
+
+                    if(res.data.length===0)
+                    {
+                        toast("No Data Available !!", {
+                            duration: 2000,
+                            position: 'top-center',
+                            // Styling
+                            style: {
+                                padding: '20px',
+                                fontWeight: '700',
+                                width:'100%',
+                                backgroundColor:' #f80759',
+                                color:'white'
+                            },
+                            className: '',
+                            // Custom Icon
+                            icon: '⚠',
+                            // Change colors of success/error/loading icon
+                            iconTheme: {
+                              primary: '#000'
+                            },
+                            // Aria
+                            ariaProps: {
+                              role: 'status',
+                              'aria-live': 'polite',
+                            },
+                          });
+                    }
                     var sarr=[];
                     for(let i=0;i<res.data.length;i++)
                     {
@@ -85,7 +136,7 @@ function Camarks()
     return(
 
         <div id="main_marks" id="main_marks" >
-
+            <Toaster  position="top-right" reverseOrder={false}  />
         <div className="row">
             <div className="col-md-5 col-lg-5">
             <div class="form-group">
