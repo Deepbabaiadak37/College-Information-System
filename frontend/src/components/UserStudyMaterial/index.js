@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import toast, { Toaster } from 'react-hot-toast';
 import axios from 'axios';
 import { Button } from 'antd';
 import Common from '../images/common2.png';
@@ -16,7 +16,32 @@ function UserStudyMaterial()
     const submitfunc=()=>{
 
         if(!year || !dept)
-            alert("All fields are Mandatory!!");
+        {
+            toast("All Fields are Mandatory !!", {
+                duration: 2000,
+                position: 'top-center',
+                // Styling
+                style: {
+                    padding: '20px',
+                    fontWeight: '700',
+                    width:'100%',
+                    backgroundColor:' #f80759',
+                    color:'white'
+                },
+                className: '',
+                // Custom Icon
+                icon: '⚠',
+                // Change colors of success/error/loading icon
+                iconTheme: {
+                  primary: '#000'
+                },
+                // Aria
+                ariaProps: {
+                  role: 'status',
+                  'aria-live': 'polite',
+                },
+              });
+        }
         else
         {
             var config = {
@@ -33,16 +58,43 @@ function UserStudyMaterial()
         
               axios(config)
                   .then(function (res) {
+                    console.log(res.data);
+                    if(res.data.length===0)
+                        {
+                            toast("No Data Available !!", {
+                                duration: 2000,
+                                position: 'top-center',
+                                // Styling
+                                style: {
+                                    padding: '20px',
+                                    fontWeight: '700',
+                                    width:'100%',
+                                    backgroundColor:' #f80759',
+                                    color:'white'
+                                },
+                                className: '',
+                                // Custom Icon
+                                icon: '⚠',
+                                // Change colors of success/error/loading icon
+                                iconTheme: {
+                                  primary: '#000'
+                                },
+                                // Aria
+                                ariaProps: {
+                                  role: 'status',
+                                  'aria-live': 'polite',
+                                },
+                              });
+                        }
+                            var arr=[];
+                            for(let i=0;i<res.data.length;i++)
+                            {
+                                arr.push(res.data[i]);
+                            }
+                            
+                            setDetails(arr);
                     
-                var arr=[];
-                for(let i=0;i<res.data.length;i++)
-                {
-                    arr.push(res.data[i]);
-                }
-                
-                setDetails(arr);
-                    
-                    
+            
                   })
               .catch(function (error) {
                   console.log(error)
@@ -56,9 +108,10 @@ return(
 
 <div class="container">
     <div className="row">
+    <Toaster  position="top-right" reverseOrder={false}  />
                     <div class="form-group">
                         <select  className="form-control"  onChange={e=>setYear(e.target.value)} value={year} >
-                            <option className="text-center" value="0">--Select Year--</option>
+                            <option className="text-center" value="">--Select Year--</option>
                             <option className="text-center" value="1">1st Year</option>
                             <option className="text-center" value="2">2nd Year</option>
                             <option className="text-center" value="3">3rd Year</option>
@@ -123,6 +176,8 @@ return(
         </tbody>
         
     </table>
+
+    
     </div>
            
            
