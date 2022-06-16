@@ -16,7 +16,30 @@ function Admin()
         event.preventDefault();
         if(!password || !type || !email)
         {
-            alert("All Fields Are Mandatory !!");
+            toast("All Fields are Mandatory !!", {
+                duration: 2000,
+                position: 'top-center',
+                // Styling
+                style: {
+                    padding: '20px',
+                    fontWeight: '700',
+                    width:'100%',
+                    backgroundColor:' #f80759',
+                    color:'white'
+                },
+                className: '',
+                // Custom Icon
+                icon: '⚠',
+                // Change colors of success/error/loading icon
+                iconTheme: {
+                  primary: '#000'
+                },
+                // Aria
+                ariaProps: {
+                  role: 'status',
+                  'aria-live': 'polite',
+                },
+              });
         }
         else
         {
@@ -38,16 +61,87 @@ function Admin()
                 {
                     if(res.data.status==400)
                     {
-                        alert(res.data.message);
+                        toast(res.data.msg, {
+                            duration: 2000,
+                            position: 'top-center',
+                            // Styling
+                            style: {
+                                padding: '20px',
+                                fontWeight: '700',
+                                width:'100%',
+                                backgroundColor:' #f80759',
+                                color:'white'
+                            },
+                            className: '',
+                            // Custom Icon
+                            icon: '⚠',
+                            // Change colors of success/error/loading icon
+                            iconTheme: {
+                              primary: '#000'
+                            },
+                            // Aria
+                            ariaProps: {
+                              role: 'status',
+                              'aria-live': 'polite',
+                            },
+                          });
                     }
                     else if(res.data.status==401)
                     {
-                        alert(res.data.error);
+                        toast(res.data.msg, {
+                            duration: 2000,
+                            position: 'top-center',
+                            // Styling
+                            style: {
+                                padding: '20px',
+                                fontWeight: '700',
+                                width:'100%',
+                                backgroundColor:' #f80759',
+                                color:'white'
+                            },
+                            className: '',
+                            // Custom Icon
+                            icon: '⚠',
+                            // Change colors of success/error/loading icon
+                            iconTheme: {
+                              primary: '#000'
+                            },
+                            // Aria
+                            ariaProps: {
+                              role: 'status',
+                              'aria-live': 'polite',
+                            },
+                          });
                     }
                     else if(res.data.status==200)
                     {
                         localStorage.clear();
                         const login_det=(jwtDecode( res.data.token));
+                        toast('Login Successfull !!', {
+                            duration: 2000,
+                            position: 'top-center',
+                            // Styling
+                            style: {
+                                padding: '20px',
+                                fontWeight: '700',
+                                width:'100%',
+                                backgroundColor:'#00c851',
+                                color:'white'
+                            },
+                            className: '',
+                            // Custom Icon
+                            icon: '✅',
+                            // Change colors of success/error/loading icon
+                            iconTheme: {
+                              primary: '#000'
+                            },
+                            // Aria
+                            ariaProps: {
+                              role: 'status',
+                              'aria-live': 'polite',
+                            },
+                          });
+                
                         if(login_det.type==1)
                         {
                             localStorage.clear();
@@ -68,7 +162,32 @@ function Admin()
                         }
                     }
                     else
-                        alert("Unexpected Error !!")
+                        {
+                            toast('Unexpected Error !!', {
+                                duration: 2000,
+                                position: 'top-center',
+                                // Styling
+                                style: {
+                                    padding: '20px',
+                                    fontWeight: '700',
+                                    width:'100%',
+                                    backgroundColor:' #f80759',
+                                    color:'white'
+                                },
+                                className: '',
+                                // Custom Icon
+                                icon: '⚠',
+                                // Change colors of success/error/loading icon
+                                iconTheme: {
+                                  primary: '#000'
+                                },
+                                // Aria
+                                ariaProps: {
+                                  role: 'status',
+                                  'aria-live': 'polite',
+                                },
+                              });
+                        }
                     
                 })
                 .catch(function (error) 
@@ -132,6 +251,7 @@ function Admin()
                 </div>
             </div>
         </div>
+        <Toaster  position="top-right" reverseOrder={false}  />
         <Footer/>
         </>
 

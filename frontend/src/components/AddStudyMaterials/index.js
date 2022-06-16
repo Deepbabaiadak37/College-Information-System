@@ -1,7 +1,7 @@
 import React , { useState } from "react";
 import axios from 'axios';
 import pic from '../images/studymaterial.jpg'
-
+import toast, { Toaster } from 'react-hot-toast';
 function AddStudyMaterials()
 {
 
@@ -93,7 +93,30 @@ const submitForm=(event)=>{
 
     if(!date || !dept || !year || !coursename || ! about || ! selectedfile)
     {
-        alert("All Fields are Mandatory !!");
+        toast("All Fields are Mandatory !!", {
+            duration: 2000,
+            position: 'top-center',
+            // Styling
+            style: {
+                padding: '20px',
+                fontWeight: '700',
+                width:'100%',
+                backgroundColor:' #f80759',
+                color:'white'
+            },
+            className: '',
+            // Custom Icon
+            icon: '⚠',
+            // Change colors of success/error/loading icon
+            iconTheme: {
+              primary: '#000'
+            },
+            // Aria
+            ariaProps: {
+              role: 'status',
+              'aria-live': 'polite',
+            },
+          });
     }
     else
     {
@@ -109,13 +132,86 @@ const submitForm=(event)=>{
            .then(res =>{
                 if(res.data.status==200)
                  {
-                    alert("Study Material Uploaded Successfully !!");
+                    toast('Study Material Uploaded Successfully !!', {
+                        duration: 2000,
+                        position: 'top-center',
+                        // Styling
+                        style: {
+                            padding: '20px',
+                            fontWeight: '700',
+                            width:'100%',
+                            backgroundColor:'#00c851',
+                            color:'white'
+                        },
+                        className: '',
+                        // Custom Icon
+                        icon: '✅',
+                        // Change colors of success/error/loading icon
+                        iconTheme: {
+                          primary: '#000'
+                        },
+                        // Aria
+                        ariaProps: {
+                          role: 'status',
+                          'aria-live': 'polite',
+                        },
+                      });
                     window.location.reload();
                  }   
                 else if(res.data.status==500) 
-                    alert(res.data.msg)
+                {
+                    toast(res.data.msg, {
+                        duration: 2000,
+                        position: 'top-center',
+                        // Styling
+                        style: {
+                            padding: '20px',
+                            fontWeight: '700',
+                            width:'100%',
+                            backgroundColor:' #f80759',
+                            color:'white'
+                        },
+                        className: '',
+                        // Custom Icon
+                        icon: '⚠',
+                        // Change colors of success/error/loading icon
+                        iconTheme: {
+                          primary: '#000'
+                        },
+                        // Aria
+                        ariaProps: {
+                          role: 'status',
+                          'aria-live': 'polite',
+                        },
+                      });
+                }
                 else 
-                    alert("Unhandled Error !!")
+                {
+                    toast("Unexpected Error !!", {
+                        duration: 2000,
+                        position: 'top-center',
+                        // Styling
+                        style: {
+                            padding: '20px',
+                            fontWeight: '700',
+                            width:'100%',
+                            backgroundColor:' #f80759',
+                            color:'white'
+                        },
+                        className: '',
+                        // Custom Icon
+                        icon: '⚠',
+                        // Change colors of success/error/loading icon
+                        iconTheme: {
+                          primary: '#000'
+                        },
+                        // Aria
+                        ariaProps: {
+                          role: 'status',
+                          'aria-live': 'polite',
+                        },
+                      });
+                }
             })
            .catch(error =>{
            console.log(error);
@@ -130,6 +226,7 @@ const submitForm=(event)=>{
         <>
         <h1 className="text-center">Add Study Material</h1>
         <br></br>
+        <Toaster  position="top-right" reverseOrder={false}  />
         <div className="row">
             <div className="col-lg-6">
                 <img src={pic} style={{height:'auto',width:'100%',borderRadius:'40px'}} />

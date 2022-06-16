@@ -87,10 +87,10 @@ router.post('/', async (req, res) =>
         try {
             jwt.verify(req.body.token, "private-key", (err, decoded) => {
                 if (err) return res.status(401).json({
-                    "result": "unauthenticated_access"
+                    msg: "Unauthenticated_access"
                 })
                 return res.status(200).json({
-                    "result": "ok"
+                    msg: "Verified"
                 })
             })
         } catch (e) {
@@ -116,7 +116,7 @@ router.post('/', async (req, res) =>
             if (!member) 
             {
                return  res.status(200).json({
-                    error: "Invalid email",status:401
+                    msg: "Invalid email",status:401
                 })
             } 
             else
@@ -138,7 +138,7 @@ router.post('/', async (req, res) =>
                 else 
                 {
                    return  res.status(200).json({
-                        message: "Invalid Password",status: 400
+                        msg: "Invalid Password",status: 400
                     })
                 }
             }
