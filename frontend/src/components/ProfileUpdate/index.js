@@ -9,11 +9,18 @@ const ProfileUpdate = () =>
 {
   const [selectedfile,setSelectedfile]=useState(null)
   const [picurl,setPicurl]=useState("")
+  const [name,setName]=useState("")
+  const [roll,setRoll]=useState("")
+  const [dept ,setDept]=useState("")
+  const [year,setYear]=useState("")
+  const [email,setEmail]=useState("")
 
 
 
   useEffect(()=>{
-    //console.log(jwtDecode(localStorage.getItem('token'))._id)
+    console.log(jwtDecode(localStorage.getItem('token')))
+    setName(jwtDecode(localStorage.getItem('token')).name)
+    
     var config = {
       method: 'post',
       url: 'http://localhost:3001/userroutes/login/getuserimage',
@@ -28,6 +35,10 @@ const ProfileUpdate = () =>
       axios(config)
           .then(function (res) {
             setPicurl(res.data.imageUrl);
+            setDept(res.data.dept)
+            setYear(res.data.year)
+            setRoll(res.data.email.slice(0,res.data.email.length-11))
+            setEmail(res.data.email)
          
           })
       .catch(function (error) {
@@ -93,11 +104,11 @@ const submitForm=(event)=>{
 
         <tbody>
           <tr>
-            <td className='custom-td'>Deep</td>
-            <td className='custom-td'>cse1802</td>
-            <td className='custom-td'>cse</td>
-            <td className='custom-td'>3</td>
-            <td className='custom-td'>cse1802@cemk.ac.in</td>
+            <td className='custom-td'>{name}</td>
+            <td className='custom-td'>{roll}</td>
+            <td className='custom-td'>{dept}</td>
+            <td className='custom-td'>{year}</td>
+            <td className='custom-td'>{email}</td>
           </tr>
         </tbody>
       </table>

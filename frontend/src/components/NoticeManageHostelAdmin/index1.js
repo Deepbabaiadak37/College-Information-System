@@ -1,7 +1,7 @@
 import {React} from 'react';
 import { DeleteOutlined} from '@ant-design/icons';
 import axios from 'axios';
-
+import toast, { Toaster } from 'react-hot-toast';
 
 const NoticeItems=(props)=>
 {
@@ -23,16 +23,87 @@ const NoticeItems=(props)=>
                   .then(function (res) {
                     if(res.data.status==200)
                     {
-                        alert(res.data.msg);
+                        toast(res.data.msg, {
+                            duration: 2000,
+                            position: 'top-center',
+                            // Styling
+                            style: {
+                                padding: '20px',
+                                fontWeight: '700',
+                                width:'100%',
+                                backgroundColor:'#00c851',
+                                color:'white'
+                            },
+                            className: '',
+                            // Custom Icon
+                            icon: '✅',
+                            // Change colors of success/error/loading icon
+                            iconTheme: {
+                              primary: '#000'
+                            },
+                            // Aria
+                            ariaProps: {
+                              role: 'status',
+                              'aria-live': 'polite',
+                            },
+                          });
                         window.location.reload();
                     }
                     else if(res.data.status==422)
                     {
-                        alert(res.data.msg);
+                        toast(res.data.msg, {
+                            duration: 2000,
+                            position: 'top-center',
+                            // Styling
+                            style: {
+                                padding: '20px',
+                                fontWeight: '700',
+                                width:'100%',
+                                backgroundColor:' #f80759',
+                                color:'white'
+                            },
+                            className: '',
+                            // Custom Icon
+                            icon: '⚠',
+                            // Change colors of success/error/loading icon
+                            iconTheme: {
+                              primary: '#000'
+                            },
+                            // Aria
+                            ariaProps: {
+                              role: 'status',
+                              'aria-live': 'polite',
+                            },
+                          });
 
                     }
                     else
-                        alert("Unexpected Error !!")
+                    {
+                        toast('Unexpected Error !!', {
+                            duration: 2000,
+                            position: 'top-center',
+                            // Styling
+                            style: {
+                                padding: '20px',
+                                fontWeight: '700',
+                                width:'100%',
+                                backgroundColor:' #f80759',
+                                color:'white'
+                            },
+                            className: '',
+                            // Custom Icon
+                            icon: '⚠',
+                            // Change colors of success/error/loading icon
+                            iconTheme: {
+                              primary: '#000'
+                            },
+                            // Aria
+                            ariaProps: {
+                              role: 'status',
+                              'aria-live': 'polite',
+                            },
+                          });
+                    }
                    
                   })
               .catch(function (error) {
@@ -43,6 +114,7 @@ const NoticeItems=(props)=>
 
     return(
         <>
+        <Toaster  position="top-right" reverseOrder={false}  />
        { props.name.map((item,index)=> (
                         
                         <tr id={item._id}>

@@ -22,11 +22,7 @@ function Contact()
                   <div className="contact-wrap w-100 p-lg-5 p-4">
                     
 
-
-                  <iframe style={{ borderRadius:'19px'}} width="649" height="539" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" id="gmap_canvas" src="https://maps.google.com/maps?width=649&amp;height=539&amp;hl=en&amp;q=college%20of%20engineering%20&amp;%20management,kolaghat%20kolaghat+(Map%20View)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe> 
-                  
-                  <script type='text/javascript' src='https://embedmaps.com/google-maps-authorization/script.js?id=5bb058ed9a2ec143ea9e8812bb3386f97aa437b8'></script>
-
+                  <iframe style={{ borderRadius:'19px'}} width="650" height="539" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" id="gmap_canvas" src="https://maps.google.com/maps?width=650&amp;height=539&amp;hl=en&amp;q=College%20of%20Engineering%20and%20management,kolaghat%20Kolaghat+(College%20Information%20system)&amp;t=&amp;z=12&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe> <a href='https://addmap.net/'>addmap</a> <script type='text/javascript' src='https://embedmaps.com/google-maps-authorization/script.js?id=cc5d7c2319d4cd2a4a99d48e3f105ed06247e970'></script>
 
                   </div>
                 </div>

@@ -4,6 +4,7 @@ import { Modal, Button} from 'antd';
 import { Form } from 'react-bootstrap';
 import axios from "axios";
 import NoticeItems from './index1';
+import toast, { Toaster } from 'react-hot-toast';
 
 class NoticeManageHostelAdmin extends React.Component
 {
@@ -46,7 +47,31 @@ class NoticeManageHostelAdmin extends React.Component
 
         if(this.state.notice=="")
         {
-            alert("Enter Notice Field !!");
+            toast("Enter Notice please!!", {
+                duration: 2000,
+                position: 'top-center',
+                // Styling
+                style: {
+                    padding: '20px',
+                    fontWeight: '700',
+                    width:'100%',
+                    backgroundColor:' #f80759',
+                    color:'white'
+                },
+                className: '',
+                // Custom Icon
+                icon: '⚠',
+                // Change colors of success/error/loading icon
+                iconTheme: {
+                  primary: '#000'
+                },
+                // Aria
+                ariaProps: {
+                  role: 'status',
+                  'aria-live': 'polite',
+                },
+              });
+
         }
         else
         {
@@ -66,14 +91,89 @@ class NoticeManageHostelAdmin extends React.Component
               {
                 if(res.data.status==200)
                     {
-                        alert("Notice Added !!");
+                        toast('Notice Added Successfully !!', {
+                            duration: 2000,
+                            position: 'top-center',
+                            // Styling
+                            style: {
+                                padding: '20px',
+                                fontWeight: '700',
+                                width:'100%',
+                                backgroundColor:'#00c851',
+                                color:'white'
+                            },
+                            className: '',
+                            // Custom Icon
+                            icon: '✅',
+                            // Change colors of success/error/loading icon
+                            iconTheme: {
+                              primary: '#000'
+                            },
+                            // Aria
+                            ariaProps: {
+                              role: 'status',
+                              'aria-live': 'polite',
+                            },
+                          });
                         window.location.reload();
                     }
                         
                     else if(res.data.status==422)
-                        alert(res.data.msg);
+                    {
+                        toast(res.data.msg, {
+                            duration: 2000,
+                            position: 'top-center',
+                            // Styling
+                            style: {
+                                padding: '20px',
+                                fontWeight: '700',
+                                width:'100%',
+                                backgroundColor:' #f80759',
+                                color:'white'
+                            },
+                            className: '',
+                            // Custom Icon
+                            icon: '⚠',
+                            // Change colors of success/error/loading icon
+                            iconTheme: {
+                              primary: '#000'
+                            },
+                            // Aria
+                            ariaProps: {
+                              role: 'status',
+                              'aria-live': 'polite',
+                            },
+                          });
+            
+                    }
                     else
-                        alert("Unexpected Error !!");
+                    {
+                        toast("Unexpected Error !!", {
+                            duration: 2000,
+                            position: 'top-center',
+                            // Styling
+                            style: {
+                                padding: '20px',
+                                fontWeight: '700',
+                                width:'100%',
+                                backgroundColor:' #f80759',
+                                color:'white'
+                            },
+                            className: '',
+                            // Custom Icon
+                            icon: '⚠',
+                            // Change colors of success/error/loading icon
+                            iconTheme: {
+                              primary: '#000'
+                            },
+                            // Aria
+                            ariaProps: {
+                              role: 'status',
+                              'aria-live': 'polite',
+                            },
+                          });
+            
+                    }
               })
           .catch(function (error) 
           {
@@ -95,6 +195,7 @@ class NoticeManageHostelAdmin extends React.Component
         return(
             <>
                 <div><h1>Hostel Notice Manage</h1>
+                <Toaster  position="top-right" reverseOrder={false}  />
                 </div>
                 <button onClick={()=>this.setState({isModalVisible:true})} className="btn btn-primary" style={{ float:'right'}}>Add</button>
                 <Modal title="Notice" visible={this.state.isModalVisible} onCancel={()=>this.setState({isModalVisible:false})}  footer={[ <Button key="submit" onClick={this.handleSubmit} className="btn btn-cus" type="primary" > Submit</Button>,

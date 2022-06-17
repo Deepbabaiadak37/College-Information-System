@@ -1,6 +1,10 @@
 import React from 'react';
 import { MDBCol, MDBContainer, MDBRow, MDBFooter } from "mdbreact";
-
+import facebook from '../images/facebook.png';
+import whatsapp from '../images/whatsapp.png';
+import linkedin from '../images/linkedin.png';
+import youtube from '../images/youtube.png';
+import instagram from '../images/instagram.png';
 
 function Footer(){
 
@@ -54,20 +58,20 @@ return (
             </h5>
             <ul className="list-unstyled">
               <li style={{ padding:'10px'}}>
-                <a href="https://www.youtube.com/c/OfficialCEMK"><img src="https://cdn-icons.flaticon.com/png/128/3670/premium/3670209.png?token=exp=1655228329~hmac=947bd92904a41916dcb77aa4cfd6ca6e"  height="28" width="28"/>&nbsp;&nbsp;Youtube</a>
+                <a href="https://www.youtube.com/c/OfficialCEMK"><img src={youtube}  height="28" width="28"/>&nbsp;&nbsp;Youtube</a>
               </li>
               <li style={{ padding:'10px'}}>
-                <a href="https://www.instagram.com/accounts/login/?next=/cemkfest_2k22/"><img src="https://cdn-icons.flaticon.com/png/128/3955/premium/3955024.png?token=exp=1655228363~hmac=0a2ed73f46f5307d1a4b1f99b62df090"  height="28" width="28"/>&nbsp;&nbsp;Instagram</a>
+                <a href="https://www.instagram.com/accounts/login/?next=/cemkfest_2k22/"><img src={instagram}  height="28" width="28"/>&nbsp;&nbsp;Instagram</a>
               </li>
               <li style={{ padding:'10px'}}>
-                <a href="https://www.linkedin.com/school/official-cemk/"><img src="https://cdn-icons.flaticon.com/png/128/4494/premium/4494497.png?token=exp=1655228405~hmac=4f35b6681f43fb03a79d7465f89d3a65"  height="28" width="28"/>&nbsp;&nbsp;Linkedin</a>
+                <a href="https://www.linkedin.com/school/official-cemk/"><img src={linkedin}  height="28" width="28"/>&nbsp;&nbsp;Linkedin</a>
               </li>
               <li style={{ padding:'10px'}}>
-                <a href="https://www.facebook.com/OfficialCEMK"><img src="https://cdn-icons.flaticon.com/png/128/3670/premium/3670124.png?token=exp=1655228438~hmac=999e24ea2baf57704dc78a99b7f0056e"  height="28" width="28"/>&nbsp;&nbsp;Facebook</a>
+                <a href="https://www.facebook.com/OfficialCEMK"><img src={facebook}  height="28" width="28"/>&nbsp;&nbsp;Facebook</a>
               </li>
               
               <li style={{ padding:'10px'}}>
-                <a href="https://api.whatsapp.com/send?phone=919609064108&app=facebook&entry_point=page_cta"><img src="https://cdn-icons-png.flaticon.com/128/5968/5968841.png"  height="28" width="28"/>&nbsp;&nbsp;Whatsapp</a>
+                <a href="https://api.whatsapp.com/send?phone=919609064108&app=facebook&entry_point=page_cta"><img src={whatsapp}  height="28" width="28"/>&nbsp;&nbsp;Whatsapp</a>
               </li>
 
 

@@ -139,6 +139,12 @@ function AddNewAdminCredential()
                                 'aria-live': 'polite',
                                 },
                             });
+
+
+
+                            setType("");
+                            setEmail("");
+                            setPassword("");
                         }
                         else
                         {
@@ -207,7 +213,7 @@ function AddNewAdminCredential()
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlTextarea4">Password</label>
-                        <input type="text" class="form-control" onChange={e=>setPassword(e.target.value)} value={password} id="exampleFormControlInput3" placeholder="Enter Passwprd"/>
+                        <input type="password" class="form-control" onChange={e=>setPassword(e.target.value)} value={password} id="exampleFormControlInput3" placeholder="Enter Passwprd"/>
                     </div>
 
                     <div>

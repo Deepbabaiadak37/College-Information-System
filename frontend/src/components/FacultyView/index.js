@@ -27,11 +27,11 @@ class FacultyView extends React.Component
         axios(this.config).then(res=> 
         {
            var staff_data=res.data.filter(function(item){
-              return item.type==2;
+              return item.type==1;
             });
 
            var faculty_data=res.data.filter(function(item){
-            return item.type==1;
+            return item.type==2;
             });
 
           this.setState({staff: staff_data});
