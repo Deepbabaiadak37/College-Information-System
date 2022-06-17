@@ -53,7 +53,7 @@ import toast, { Toaster } from 'react-hot-toast';
 
 
 
- toast('tick screen !!', {
+          toast('tick screen !!', {
             duration: 2000,
             position: 'top-center',
             // Styling

@@ -2,6 +2,8 @@ import React , { useState } from "react";
 import pic from'../images/5.jpg';
 import axios from 'axios';
 
+import toast, { Toaster } from 'react-hot-toast';
+
 
 function AllotmentsAdd()
 {
@@ -18,7 +20,30 @@ function AllotmentsAdd()
      
       if(!year || !dept || !roomno || !contact || !name)
       {
-        alert("All fields are mandatory !!")
+        toast("All Fields are Mandatory !!", {
+          duration: 2000,
+          position: 'top-center',
+          // Styling
+          style: {
+              padding: '20px',
+              fontWeight: '700',
+              width:'100%',
+              backgroundColor:' #f80759',
+              color:'white'
+          },
+          className: '',
+          // Custom Icon
+          icon: '⚠',
+          // Change colors of success/error/loading icon
+          iconTheme: {
+            primary: '#000'
+          },
+          // Aria
+          ariaProps: {
+            role: 'status',
+            'aria-live': 'polite',
+          },
+        });
 
       }
       else
@@ -41,10 +66,58 @@ function AllotmentsAdd()
         axios(config)
             .then(function (res) {
               if(res.data.status==422)
-                alert("Room Already Alloted !!")
+              {
+                toast("Room already alloted !!", {
+                  duration: 2000,
+                  position: 'top-center',
+                  // Styling
+                  style: {
+                      padding: '20px',
+                      fontWeight: '700',
+                      width:'100%',
+                      backgroundColor:' #f80759',
+                      color:'white'
+                  },
+                  className: '',
+                  // Custom Icon
+                  icon: '⚠',
+                  // Change colors of success/error/loading icon
+                  iconTheme: {
+                    primary: '#000'
+                  },
+                  // Aria
+                  ariaProps: {
+                    role: 'status',
+                    'aria-live': 'polite',
+                  },
+                });
+              }
               else if(res.data.status==200)
                 {
-                  alert("Alloted Successfully !!")
+                  toast('Alloted Successfully !!', {
+                    duration: 2000,
+                    position: 'top-center',
+                    // Styling
+                    style: {
+                        padding: '20px',
+                        fontWeight: '700',
+                        width:'100%',
+                        backgroundColor:'#00c851',
+                        color:'white'
+                    },
+                    className: '',
+                    // Custom Icon
+                    icon: '✅',
+                    // Change colors of success/error/loading icon
+                    iconTheme: {
+                      primary: '#000'
+                    },
+                    // Aria
+                    ariaProps: {
+                      role: 'status',
+                      'aria-live': 'polite',
+                    },
+                  });
                   setYear("");
                   setDept("")
                   setRoomno("")
@@ -52,10 +125,35 @@ function AllotmentsAdd()
                   setName("")
                 }
                 else
-                  alert("Unexpected Error !!")
+                {
+                  toast("Unexpected Error!!", {
+                    duration: 2000,
+                    position: 'top-center',
+                    // Styling
+                    style: {
+                        padding: '20px',
+                        fontWeight: '700',
+                        width:'100%',
+                        backgroundColor:' #f80759',
+                        color:'white'
+                    },
+                    className: '',
+                    // Custom Icon
+                    icon: '⚠',
+                    // Change colors of success/error/loading icon
+                    iconTheme: {
+                      primary: '#000'
+                    },
+                    // Aria
+                    ariaProps: {
+                      role: 'status',
+                      'aria-live': 'polite',
+                    },
+                  });
+                }
             })
         .catch(function (error) {
-           
+           console.log(error);
         });
       }  
     }
@@ -64,6 +162,7 @@ function AllotmentsAdd()
     return(
         <>
         <h1 className="text-center">Hostel Room  Allot</h1>
+        <Toaster  position="top-right" reverseOrder={false}  />
         <br></br>
         <div className="row">
             <div className="col-lg-6">
