@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-
+import toast, { Toaster } from 'react-hot-toast';
 
 
 function ViewHostelComplains()
@@ -11,7 +11,7 @@ function ViewHostelComplains()
           axios.get('http://localhost:3001/userroutes/hostelcomplain/showcomplains')
           .then(res => {
             
-              console.log(res)
+             
               var arr=[];
               for(let i=0;i<res.data.length;i++)
               {
@@ -40,13 +40,35 @@ function ViewHostelComplains()
 
       axios(config)
         .then(function (res) {
-            console.log(res);
-            alert("Deleted Successfully");
+           
+          toast('Deleted Successfully !!', {
+            duration: 2000,
+            position: 'top-center',
+            // Styling
+            style: {
+                padding: '20px',
+                fontWeight: '700',
+                width:'100%',
+                backgroundColor:'#00c851',
+                color:'white'
+            },
+            className: '',
+            // Custom Icon
+            icon: '✅',
+            // Change colors of success/error/loading icon
+            iconTheme: {
+              primary: '#000'
+            },
+            // Aria
+            ariaProps: {
+              role: 'status',
+              'aria-live': 'polite',
+            },
+          });
             
             axios.get('http://localhost:3001/userroutes/hostelcomplain/showcomplains')
             .then(res => {
-              
-                console.log(res)
+             
                 var arr=[];
                 for(let i=0;i<res.data.length;i++)
                 {
@@ -106,6 +128,7 @@ function ViewHostelComplains()
 
 return(
   <>
+  <Toaster  position="top-right" reverseOrder={false}  />
       {   details.length? (  
                   <table class="table table-hover table-dark">
                       <thead>

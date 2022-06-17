@@ -117,7 +117,7 @@ function Admin()
                     {
                         localStorage.clear();
                         const login_det=(jwtDecode( res.data.token));
-                        toast('Login Successfull !!', {
+                        toast('Login Successfull  !!', {
                             duration: 2000,
                             position: 'top-center',
                             // Styling
