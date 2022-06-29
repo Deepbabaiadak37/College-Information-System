@@ -1,7 +1,7 @@
 import React from 'react';
 
 import './App.css';
-import { BrowserRouter as Router,Route,Link,Switch} from 'react-router-dom';
+import { BrowserRouter as Router,Route,Routes} from 'react-router-dom';
 
 import Home from './components/home';
 import Signup from './components/Signup/Signup.js';
@@ -23,22 +23,25 @@ function App()
           <div className="App">
             {(
               <Router>
-                  <Switch>
-                    <Route exact path='/'          component={Home}     ></Route>
-                    <Route exact path='/nf'     component={Notfoundpage}    ></Route>
+                <Routes>
+                    <Route exact path='/'          element={<Home/>}     ></Route>
+                    <Route exact path='/nf'     element={<Notfoundpage/>}    ></Route>
 
 
-                    <Route exact path='/signup'    component={Signup}   ></Route>
-                    <Route exact path='/login'     component={Login}    ></Route>
-                    <Route exact path='/notice'    component={Notice}   ></Route>
-                    <Route exact path='/admin'     component={Admin}    ></Route>
-                    <Route exact path='/fpasswd'    component={ForgotPassword}   ></Route>
-                    <Route exact path='/dashboard' > <Protected cmp={Dashboard}/></Route>
-                    <Route path='/adminmain'><DashboardMainAdmin/> </Route>
-                    <Route path='/adminteacher'><DashboardTeacherAdmin/> </Route>
-                    <Route path='/adminhostel'><DashboardHostelAdmin/> </Route>
+                    <Route exact path='/signup'    element={<Signup/>}   ></Route>
+                    <Route exact path='/login'     element={<Login/>}    ></Route>
+                    <Route exact path='/notice'    element={<Notice/>}   ></Route>
+                    <Route exact path='/admin'     element={<Admin/>}    ></Route>
+                    <Route exact path='/fpasswd'    element={<ForgotPassword/>}   ></Route>
+                    <Route exact path='/dashboard' element={<Dashboard/>}></Route>
+                    <Route exact path='/adminmain' element={<DashboardMainAdmin/>}> </Route>
+                    <Route  path='/adminteacher' element={<DashboardTeacherAdmin/>}> </Route>
+                    <Route path='/adminhostel' element={<DashboardHostelAdmin/>} > </Route>
                     
-                  </Switch>
+                
+
+                </Routes>
+                   
               </Router> 
             )}
           </div>         

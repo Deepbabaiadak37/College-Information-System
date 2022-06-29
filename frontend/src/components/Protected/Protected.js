@@ -1,13 +1,13 @@
-import React,{useEffect, useState}  from 'react';
+import React,{useEffect}  from 'react';
 
-import {Redirect, useHistory} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 function Protected(props) 
 {
-    const history=useHistory();
+    const navigate=useNavigate();
     let Component=props.cmp;
     useEffect(() => {
         if(!localStorage.getItem("token"))
-            history.push('/');
+            navigate('/');
         
       },[]);
 
